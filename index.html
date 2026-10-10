@@ -8,858 +8,1165 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Arial', sans-serif; color: #ffffff; background-color: #0a0a0a; overflow-x: hidden; }
         canvas { display: block; position: fixed; top: 0; left: 0; z-index: 1; }
-        .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0; }
-
+        .container { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; }
         .top-nav { position: fixed; top: 0; width: 100%; display: flex; justify-content: center; gap: 20px; padding: 12px 0; background-color: rgba(10,10,10,0.95); z-index: 1000; border-bottom: 2px solid #ff69b4; backdrop-filter: blur(10px); align-items: center; flex-wrap: wrap; }
-        .top-nav a { color: #ffffff; text-decoration: none; font-size: 12px; transition: color 0.3s ease; border-bottom: 2px solid transparent; padding-bottom: 5px; cursor: pointer; }
+        .top-nav a { color: #fff; text-decoration: none; font-size: 12px; border-bottom: 2px solid transparent; padding-bottom: 5px; cursor: pointer; transition: color .3s; }
         .top-nav a:hover { color: #ff69b4; border-bottom-color: #ff69b4; }
         .language-switcher { display: flex; gap: 5px; margin-left: auto; padding-right: 15px; }
-        .language-switcher button { background: none; border: none; font-size: 18px; cursor: pointer; transition: transform 0.2s ease; opacity: 0.7; color: #ffffff; min-width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; }
-        .language-switcher button:hover { transform: scale(1.2); opacity: 1; background-color: rgba(255,105,180,0.2); }
-        .language-switcher button.active { opacity: 1; transform: scale(1.3); background-color: rgba(255,105,180,0.3); }
-        .language-switcher button .lang-code { font-size: 10px; display: none; position: absolute; color: #ffffff; font-weight: bold; margin-top: 2px; }
-        @media (max-width: 768px) { .language-switcher button .lang-code { display: none; } }
-        @media (min-width: 769px) { .language-switcher button { flex-direction: column; gap: 2px; } .language-switcher button .lang-code { display: block; } }
-
+        .language-switcher button { background: none; border: none; font-size: 18px; cursor: pointer; opacity: .7; color: #fff; min-width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; transition: transform .2s; }
+        .language-switcher button:hover { transform: scale(1.2); opacity: 1; background: rgba(255,105,180,.2); }
+        .language-switcher button.active { opacity: 1; transform: scale(1.3); background: rgba(255,105,180,.3); }
+        .language-switcher button .lang-code { font-size: 10px; display: none; color: #fff; font-weight: bold; }
+        @media (min-width:769px) { .language-switcher button { flex-direction: column; gap: 2px; } .language-switcher button .lang-code { display: block; } }
         html { scroll-behavior: smooth; }
-        header { background-color: rgba(10,10,10,0.95); border-bottom: 3px solid #ff69b4; padding: 0; backdrop-filter: blur(10px); }
+        header { background-color: rgba(10,10,10,.95); border-bottom: 3px solid #ff69b4; backdrop-filter: blur(10px); }
         .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 8px 20px; }
         .logo { font-size: 28px; font-weight: bold; color: #ff69b4; }
-        nav { display: flex; gap: 15px; list-style: none; flex-wrap: wrap; }
-        nav a { color: #ffffff; text-decoration: none; transition: color 0.3s ease; border-bottom: 2px solid transparent; padding-bottom: 5px; font-size: 12px; }
+        nav { display: flex; gap: 15px; flex-wrap: wrap; }
+        nav a { color: #fff; text-decoration: none; font-size: 12px; border-bottom: 2px solid transparent; padding-bottom: 5px; transition: color .3s; }
         nav a:hover { color: #ff69b4; border-bottom-color: #ff69b4; }
-
-        .hero { text-align: center; margin-bottom: 20px; padding: 60px 20px; border: 3px solid #ff69b4; background-color: rgba(10,10,10,0.8); }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; color: #ff69b4; text-shadow: 0 0 10px rgba(255,105,180,0.5); }
+        .hero { text-align: center; margin-bottom: 20px; padding: 60px 20px; border: 3px solid #ff69b4; background: rgba(10,10,10,.8); }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; color: #ff69b4; text-shadow: 0 0 10px rgba(255,105,180,.5); }
         .hero p { font-size: 18px; color: #e0e0e0; }
-
         .script-section { margin-top: 30px; margin-bottom: 40px; }
-        .script-box { background-color: rgba(10,10,10,0.8); border: 2px solid #ff69b4; padding: 20px; border-radius: 5px; }
+        .script-box { background: rgba(10,10,10,.8); border: 2px solid #ff69b4; padding: 20px; border-radius: 5px; }
         .script-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .script-header h3 { color: #ff69b4; margin: 0; font-size: 16px; }
-        .copy-btn { padding: 8px 20px; background-color: #ff69b4; color: #ffffff; border: none; border-radius: 3px; cursor: pointer; font-size: 12px; transition: background-color 0.3s ease; }
-        .copy-btn:hover { background-color: #ff85c0; }
-        #script-code { background-color: rgba(255,105,180,0.05); border: 1px solid #ff69b4; padding: 15px; border-radius: 3px; color: #ffffff; font-family: 'Courier New', monospace; font-size: 12px; overflow-x: auto; margin: 0; line-height: 1.6; }
-
+        .copy-btn { padding: 8px 20px; background: #ff69b4; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 12px; transition: background .3s; }
+        .copy-btn:hover { background: #ff85c0; }
+        #script-code { background: rgba(255,105,180,.05); border: 1px solid #ff69b4; padding: 15px; border-radius: 3px; color: #fff; font-family: monospace; font-size: 12px; overflow-x: auto; margin: 0; line-height: 1.6; }
         .community-section { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; }
-        .community-btn { padding: 15px 40px; border: 2px solid #ff69b4; background-color: transparent; color: #ffffff; font-size: 16px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
-        .community-btn:hover { background-color: #ff69b4; color: #ffffff; box-shadow: 0 0 20px rgba(255,105,180,0.5); }
-
-        section { margin-bottom: 25px; background-color: rgba(10,10,10,0.8); padding: 30px; border: 2px solid #ff69b4; }
-        section h2 { font-size: 32px; color: #ff69b4; margin-bottom: 20px; border-bottom: 2px solid #ff69b4; padding-bottom: 15px; text-shadow: 0 0 10px rgba(255,105,180,0.3); }
-
-        .faq-item { margin-bottom: 25px; padding: 20px; background-color: rgba(255,105,180,0.1); border-left: 3px solid #ff69b4; }
+        .community-btn { padding: 15px 40px; border: 2px solid #ff69b4; background: transparent; color: #fff; font-size: 16px; cursor: pointer; transition: all .3s; text-decoration: none; display: inline-block; }
+        .community-btn:hover { background: #ff69b4; box-shadow: 0 0 20px rgba(255,105,180,.5); }
+        section { margin-bottom: 25px; background: rgba(10,10,10,.8); padding: 30px; border: 2px solid #ff69b4; }
+        section h2 { font-size: 32px; color: #ff69b4; margin-bottom: 20px; border-bottom: 2px solid #ff69b4; padding-bottom: 15px; }
+        .faq-item { margin-bottom: 25px; padding: 20px; background: rgba(255,105,180,.1); border-left: 3px solid #ff69b4; }
         .faq-item h3 { color: #ff69b4; margin-bottom: 10px; font-size: 16px; }
         .faq-item p { color: #e0e0e0; line-height: 1.6; }
-
-        /* ===== FEATURE TAB CARDS ===== */
-        .feature-version { color: #ffaa00; font-size: 13px; margin-bottom: 10px; }
-        .feature-count { color: #e0e0e0; font-size: 13px; margin-bottom: 20px; background: rgba(255,105,180,0.08); border-left: 3px solid #ff69b4; padding: 10px 15px; border-radius: 3px; }
+        /* TAB CARDS */
+        .feature-version { color: #ffaa00; font-size: 13px; margin-bottom: 8px; }
+        .feature-count { color: #e0e0e0; font-size: 13px; margin-bottom: 20px; background: rgba(255,105,180,.08); border-left: 3px solid #ff69b4; padding: 10px 15px; border-radius: 3px; }
         .tabs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-        .tab-card { background-color: rgba(255,105,180,0.05); border: 1px solid rgba(255,105,180,0.4); border-radius: 8px; overflow: hidden; transition: border-color 0.3s; }
+        .tab-card { background: rgba(255,105,180,.05); border: 1px solid rgba(255,105,180,.4); border-radius: 8px; overflow: hidden; transition: border-color .3s; }
         .tab-card:hover { border-color: #ff69b4; }
         .tab-header { display: flex; align-items: flex-start; gap: 12px; padding: 14px; }
         .tab-num { background: #ff69b4; color: #fff; font-weight: bold; font-size: 11px; min-width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
         .tab-meta { flex: 1; }
         .tab-name { color: #ff69b4; font-size: 14px; font-weight: bold; margin-bottom: 4px; }
-        .tab-short { color: #aaaaaa; font-size: 11px; line-height: 1.5; }
+        .tab-short { color: #aaa; font-size: 11px; line-height: 1.5; }
         .tab-tags { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
-        .tag-anim { background: rgba(255,170,0,0.12); border: 1px solid rgba(255,170,0,0.4); color: #ffaa00; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
-        .tag-danger { background: rgba(255,107,107,0.12); border: 1px solid rgba(255,107,107,0.4); color: #ff6b6b; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
-        .detail-toggle { width: 100%; padding: 9px 14px; background: rgba(255,105,180,0.07); border: none; border-top: 1px solid rgba(255,105,180,0.2); color: #ff69b4; cursor: pointer; text-align: left; font-size: 12px; transition: background 0.2s; display: flex; justify-content: space-between; align-items: center; }
-        .detail-toggle:hover { background: rgba(255,105,180,0.15); }
-        .tab-detail { display: none; padding: 12px 14px; border-top: 1px solid rgba(255,105,180,0.15); background: rgba(0,0,0,0.35); }
+        .tag-anim { background: rgba(255,170,0,.12); border: 1px solid rgba(255,170,0,.4); color: #ffaa00; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+        .tag-danger { background: rgba(255,107,107,.12); border: 1px solid rgba(255,107,107,.4); color: #ff6b6b; font-size: 10px; padding: 2px 7px; border-radius: 10px; }
+        .detail-toggle { width: 100%; padding: 9px 14px; background: rgba(255,105,180,.07); border: none; border-top: 1px solid rgba(255,105,180,.2); color: #ff69b4; cursor: pointer; text-align: left; font-size: 12px; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
+        .detail-toggle:hover { background: rgba(255,105,180,.15); }
+        .tab-detail { display: none; padding: 12px 14px; border-top: 1px solid rgba(255,105,180,.15); background: rgba(0,0,0,.35); }
         .tab-detail.open { display: block; }
-        .sub-sec { color: #ffaa00; font-size: 10px; font-weight: bold; margin: 10px 0 5px 0; padding: 3px 8px; background: rgba(255,170,0,0.08); border-radius: 3px; display: block; }
+        .sub-sec { color: #ffaa00; font-size: 10px; font-weight: bold; margin: 10px 0 5px; padding: 3px 8px; background: rgba(255,170,0,.08); border-radius: 3px; display: block; }
         .sub-sec:first-child { margin-top: 0; }
-        .sf { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .sf { padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
         .sf:last-child { border-bottom: none; }
-        .sf-name { color: #dddddd; font-size: 12px; font-weight: bold; }
-        .sf-desc { color: #888888; font-size: 11px; margin-top: 2px; display: block; line-height: 1.4; }
-
-        /* ===== DEVELOPERS ===== */
+        .sf-name { color: #ddd; font-size: 12px; font-weight: bold; }
+        .sf-desc { color: #888; font-size: 11px; margin-top: 2px; display: block; line-height: 1.4; }
+        /* DEVELOPERS */
         .developers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .developer-card { background-color: rgba(255,105,180,0.08); border: 2px solid #ff69b4; padding: 20px; border-radius: 5px; text-align: center; }
-        .developer-card h3 { color: #ff69b4; margin: 0 0 10px 0; font-size: 16px; }
+        .developer-card { background: rgba(255,105,180,.08); border: 2px solid #ff69b4; padding: 20px; border-radius: 5px; text-align: center; }
+        .developer-card h3 { color: #ff69b4; margin: 0 0 10px; font-size: 16px; }
         .developer-card .role { color: #e0e0e0; font-size: 12px; line-height: 1.6; margin-bottom: 15px; }
-        .tiktok-btn, .profile-btn { display: inline-block; padding: 8px 20px; background-color: #ff69b4; color: #ffffff; text-decoration: none; border-radius: 3px; font-size: 12px; transition: background-color 0.3s ease; border: none; cursor: pointer; }
-        .tiktok-btn:hover, .profile-btn:hover { background-color: #ff85c0; }
-        .profile-btn { background-color: #00bfff; }
-        .profile-btn:hover { background-color: #1ec7ff; }
-        .others-section { background-color: rgba(255,105,180,0.08); border-left: 3px solid #ff69b4; padding: 15px; margin-bottom: 20px; border-radius: 3px; }
-        .others-section h3 { color: #ff69b4; margin: 0 0 10px 0; }
+        .tiktok-btn, .profile-btn { display: inline-block; padding: 8px 20px; background: #ff69b4; color: #fff; text-decoration: none; border-radius: 3px; font-size: 12px; transition: background .3s; border: none; cursor: pointer; }
+        .tiktok-btn:hover, .profile-btn:hover { background: #ff85c0; }
+        .profile-btn { background: #00bfff; }
+        .profile-btn:hover { background: #1ec7ff; }
+        .others-section { background: rgba(255,105,180,.08); border-left: 3px solid #ff69b4; padding: 15px; margin-bottom: 20px; border-radius: 3px; }
+        .others-section h3 { color: #ff69b4; margin: 0 0 10px; }
         .others-section p { color: #e0e0e0; margin: 0; }
-        .ai-section { background-color: rgba(255,105,180,0.08); border-left: 3px solid #ffaa00; padding: 15px; border-radius: 3px; }
-        .ai-section h3 { color: #ffaa00; margin: 0 0 15px 0; }
-        .ai-list { color: #e0e0e0; line-height: 1.8; }
-        .ai-category { color: #e0e0e0; font-size: 13px; }
-
-        /* ===== GITHUB ===== */
+        .ai-section { background: rgba(255,105,180,.08); border-left: 3px solid #ffaa00; padding: 15px; border-radius: 3px; }
+        .ai-section h3 { color: #ffaa00; margin: 0 0 15px; }
+        .ai-category { color: #e0e0e0; font-size: 13px; line-height: 1.8; }
+        /* GITHUB */
         .github-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 10px; }
-        .github-card { display: flex; align-items: center; gap: 12px; padding: 15px 20px; border: 2px solid #ff69b4; background-color: rgba(255,105,180,0.08); color: #ffffff; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; }
-        .github-card:hover { background-color: rgba(255,105,180,0.2); box-shadow: 0 0 15px rgba(255,105,180,0.4); }
+        .github-card { display: flex; align-items: center; gap: 12px; padding: 15px 20px; border: 2px solid #ff69b4; background: rgba(255,105,180,.08); color: #fff; text-decoration: none; border-radius: 5px; transition: all .3s; }
+        .github-card:hover { background: rgba(255,105,180,.2); box-shadow: 0 0 15px rgba(255,105,180,.4); }
         .github-card span { font-size: 14px; word-break: break-all; }
-
         footer { text-align: center; padding: 30px; border-top: 2px solid #ff69b4; color: #a0a0a0; font-size: 14px; }
-
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 10px; }
-            .top-nav { gap: 10px; padding: 10px 5px; }
-            .hero h1 { font-size: 30px; }
-            section { padding: 20px; }
-            section h2 { font-size: 22px; }
-        }
+        @media (max-width:768px) { .header-content { flex-direction: column; gap: 10px; } .top-nav { gap: 10px; } .hero h1 { font-size: 30px; } section { padding: 20px; } section h2 { font-size: 22px; } }
     </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
-
-    <nav class="top-nav">
-        <a onclick="scrollToSection('#home')">Home</a>
-        <a onclick="scrollToSection('#faq')">FAQ</a>
-        <a onclick="scrollToSection('#features')">機能一覧</a>
-        <a onclick="scrollToSection('#developers')">開発関係者一覧</a>
-        <a onclick="scrollToSection('#github')">GitHub</a>
-        <a onclick="scrollToSection('#terms')">利用規約</a>
-        <div class="language-switcher">
-            <button onclick="changeLanguage('ja')" title="日本語">🇯🇵<span class="lang-code">JP</span></button>
-            <button onclick="changeLanguage('vn')" title="ベトナム語">🇻🇳<span class="lang-code">VN</span></button>
-            <button onclick="changeLanguage('en')" title="英語">🇬🇧<span class="lang-code">EN</span></button>
-            <button onclick="changeLanguage('ru')" title="ロシア語">🇷🇺<span class="lang-code">RU</span></button>
-            <button onclick="changeLanguage('th')" title="タイ語">🇹🇭<span class="lang-code">TH</span></button>
-        </div>
-    </nav>
-
-    <header>
-        <div class="header-content">
-            <div class="logo">🌸 SakuraHUB</div>
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#faq">FAQ</a>
-                <a href="#features">機能一覧</a>
-                <a href="#developers">開発関係者一覧</a>
-                <a href="#github">GitHub</a>
-                <a href="#terms">利用規約</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="hero" id="home">
-            <h1>🌸 SakuraHUBページ</h1>
-            <p>次世代のオープンFTAPスクリプトハブ</p>
-        </div>
-
-        <div class="community-section">
-            <a href="https://discord.gg/qFQTe7rcyE" class="community-btn" target="_blank">Discord に参加</a>
-            <a href="https://line.me/ti/g2/-CBPty1N0v2XuNPqaJm5xLmCBt0wBr3_vxrOqQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="community-btn" target="_blank">LINE オープンチャット</a>
-        </div>
-
-        <div class="script-section">
-            <div class="script-box">
-                <div class="script-header">
-                    <h3>📋 SakuraHUB スクリプト</h3>
-                    <button class="copy-btn" onclick="copyScript()">コピー</button>
-                </div>
-                <pre id="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/SaturnGroup02/Sakura-Hub-main/refs/heads/main/Sakura%20main"))()</pre>
-            </div>
-        </div>
-
-        <section id="faq">
-            <h2>よくある質問 (FAQ)</h2>
-            <div class="faq-item"><h3>❓ ソースコードはどこで入手できますか？</h3><p>DiscordまたはGitHubで入手できます。</p></div>
-            <div class="faq-item"><h3>❓ 対応言語は何ですか？</h3><p>日本語、ベトナム語、英語、その他</p></div>
-            <div class="faq-item"><h3>❓ 安全ですか？</h3><p>はい、オープンソースコードです。</p></div>
-            <div class="faq-item"><h3>❓ さくらhubの種類は？</h3><p>V0.5、V0.6、V0.7があります。V0.5のサポートは完全に終了しました。</p></div>
-            <div class="faq-item"><h3>❓ サポート状況は？</h3><p>公式完全サポートは2026/12/15をもって終了予定</p></div>
-        </section>
-
-        <!-- ========== FEATURES ========== -->
-        <section id="features">
-            <h2>機能一覧</h2>
-            <div class="feature-version">🌸 さくらhub V0.7 — v0.7.2.140</div>
-            <div class="feature-count" id="feature-count">全30タブ、100以上の機能を搭載</div>
-            <div class="tabs-grid">
-
-                <!-- 1 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">1</div><div class="tab-meta"><div class="tab-name">Me(=^・^=)</div><div class="tab-short">自分の移動・視界に関する機能をまとめたタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">無限ジャンプ</span><span class="sf-desc">空中でも何度でもジャンプできます。</span></div>
-                        <div class="sf"><span class="sf-name">ノークリップ</span><span class="sf-desc">壁やオブジェクトをすり抜けて移動できます。</span></div>
-                        <div class="sf"><span class="sf-name">TPWalk</span><span class="sf-desc">速度16〜500で高速移動。WASDで方向指定。</span></div>
-                        <div class="sf"><span class="sf-name">TPWalk速度</span><span class="sf-desc">移動速度を調整するスライダー。</span></div>
-                        <div class="sf"><span class="sf-name">ESP</span><span class="sf-desc">他プレイヤーの頭上に名前と距離を表示。壁越し可。</span></div>
-                        <div class="sf"><span class="sf-name">三人称視点</span><span class="sf-desc">カメラを三人称モードに切り替えます。</span></div>
-                        <div class="sf"><span class="sf-name">FOV</span><span class="sf-desc">視野角を-5〜180で調整できます。</span></div>
-                        <div class="sf"><span class="sf-name">FOVリセット</span><span class="sf-desc">FOVをデフォルト値の70に戻します。</span></div>
-                        <div class="sf"><span class="sf-name">全機能停止</span><span class="sf-desc">起動中のすべての機能を一括停止します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 2 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">2</div><div class="tab-meta"><div class="tab-name">GUI</div><div class="tab-short">補助的なGUIを起動するためのタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">固定gui</span><span class="sf-desc">照準で狙ったオブジェクトを固定するGUI。MENUボタンで切替。</span></div>
-                        <div class="sf"><span class="sf-name">TTP GUI</span><span class="sf-desc">外部テレポート・固定GUI。バックスラッシュキーで起動。</span></div>
-                        <div class="sf"><span class="sf-name">SaluraHUB-keyboard.GUI</span><span class="sf-desc">外部キーボードGUIを読み込みます。</span></div>
-                    </div>
-                </div>
-
-                <!-- 3 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">3</div><div class="tab-meta"><div class="tab-name">アンチ</div><div class="tab-short">他のプレイヤーからの攻撃を防ぐ機能をまとめたタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">掴まれても脱出(シンプル)</span><span class="sf-desc">Struggleを連打してアンカーで脱出します。</span></div>
-                        <div class="sf"><span class="sf-name">Anti Grab V2(強化)</span><span class="sf-desc">コリジョンオフ・Ragdoll解除・物理ロックで脱出。</span></div>
-                        <div class="sf"><span class="sf-name">Anti Gucci</span><span class="sf-desc">トラクターによる拉致を防ぐ機能。自動でトラクターを上空に飛ばします。</span></div>
-                        <div class="sf"><span class="sf-name">Anti Void</span><span class="sf-desc">ボイド落下を防ぐ機能。FallenPartsDestroyHeightを無効化します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 4 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">4</div><div class="tab-meta"><div class="tab-name">攻撃系</div><div class="tab-short">他のプレイヤーを攻撃する機能のタブです。</div><div class="tab-tags"><span class="tag-danger">⚠️ 悪用厳禁</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <span class="sub-sec">【キックV1(ブロブ掴み)】</span>
-                        <div class="sf"><span class="sf-name">ターゲットプレイヤー</span><span class="sf-desc">攻撃対象を選択するドロップダウン。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤーリスト更新</span><span class="sf-desc">プレイヤーリストを最新の状態に更新。</span></div>
-                        <div class="sf"><span class="sf-name">ループキックV1(掴み＋ブロブ)</span><span class="sf-desc">対象プレイヤーを自動でループキックし続ける機能。</span></div>
-                        <span class="sub-sec">【キックV2(軌道＆掴み)】</span>
-                        <div class="sf"><span class="sf-name">ターゲットを選択</span><span class="sf-desc">攻撃対象を選択。</span></div>
-                        <div class="sf"><span class="sf-name">ドリフトキックV2</span><span class="sf-desc">ブロブマンで円軌道を回転しながらキック。</span></div>
-                        <span class="sub-sec">【ふっとばす】</span>
-                        <div class="sf"><span class="sf-name">ふっとばす！</span><span class="sf-desc">選択したプレイヤーをブロブで吹き飛ばす。</span></div>
-                        <div class="sf"><span class="sf-name">無限ジャンプ / 三人称視点</span><span class="sf-desc">ふっとばす専用の補助機能。</span></div>
-                        <span class="sub-sec">【全員キック】</span>
-                        <div class="sf"><span class="sf-name">全員キック</span><span class="sf-desc">サーバー内の全プレイヤーを一括キック。</span></div>
-                        <div class="sf"><span class="sf-name">フレンドを除外</span><span class="sf-desc">フレンドをキック対象から除外するオプション。</span></div>
-                        <span class="sub-sec">【スフィアオービットキックV1】</span>
-                        <div class="sf"><span class="sf-name">実行(球体軌道キック)</span><span class="sf-desc">対象の周囲を3D球体軌道で高速回転しながらキック。</span></div>
-                        <div class="sf"><span class="sf-name">軌道半径 / 軌道速度 / 浮遊高さ</span><span class="sf-desc">軌道のパラメータを調整。</span></div>
-                        <div class="sf"><span class="sf-name">球体傾き / 軌道複雑さ / エフェクト表示</span><span class="sf-desc">軌道の形状とエフェクトを調整。</span></div>
-                    </div>
-                </div>
-
-                <!-- 5 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">5</div><div class="tab-meta"><div class="tab-name">汽車を乗っ取る</div><div class="tab-short">列車に関連する自動化機能のタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">ランダムな空席に座る</span><span class="sf-desc">空いている座席を探して自動的に座ります。</span></div>
-                        <div class="sf"><span class="sf-name">自動化を有効化</span><span class="sf-desc">乗車・降車時にオカリナとマヨネーズを自動操作。</span></div>
-                        <div class="sf"><span class="sf-name">vFly GUI起動</span><span class="sf-desc">外部の飛行GUI。WASD+QEで飛行できます。</span></div>
-                    </div>
-                </div>
-
-                <!-- 6 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">6</div><div class="tab-meta"><div class="tab-name">楽譜演奏</div><div class="tab-short">ピアノで自動演奏するためのタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <span class="sub-sec">【ピアノ制御】</span>
-                        <div class="sf"><span class="sf-name">ピアノ機能を有効化</span><span class="sf-desc">MusicKeyboardを検出して自動演奏を可能にします。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">ピアノをプレイヤーに追従させます。</span></div>
-                        <span class="sub-sec">【曲の再生(テキスト入力)】</span>
-                        <div class="sf"><span class="sf-name">JSONデータを入力</span><span class="sf-desc">楽曲データをJSON形式で入力するテキストボックス。</span></div>
-                        <div class="sf"><span class="sf-name">入力した曲を再生 / 再生を停止</span><span class="sf-desc">自動演奏の開始・停止。</span></div>
-                        <span class="sub-sec">【MIDI→JSON コンバーター】</span>
-                        <div class="sf"><span class="sf-name">コンバーターを開く(ブラウザ)</span><span class="sf-desc">MIDIファイルをJSONに変換するウェブページを開きます。</span></div>
-                        <div class="sf"><span class="sf-name">URLをコピー</span><span class="sf-desc">コンバーターのURLをクリップボードにコピー。</span></div>
-                    </div>
-                </div>
-
-                <!-- 7 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">7</div><div class="tab-meta"><div class="tab-name">SRBM</div><div class="tab-short">自分のおもちゃを操作するタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <span class="sub-sec">【HUD表示】</span>
-                        <div class="sf"><span class="sf-name">HUD表示(画像+座標)</span><span class="sf-desc">画面中央に画像と座標を表示。Pキーで表示切替。</span></div>
-                        <span class="sub-sec">【その他】</span>
-                        <div class="sf"><span class="sf-name">ICBM</span><span class="sf-desc">ボムミサイルを操作して弾道飛行させる機能。</span></div>
-                        <div class="sf"><span class="sf-name">Third Person</span><span class="sf-desc">三人称視点に切り替えます。</span></div>
-                        <div class="sf"><span class="sf-name">Helicopter Control</span><span class="sf-desc">ヘリコプターを操作。WASD+ZXで操作。</span></div>
-                        <div class="sf"><span class="sf-name">Toy Mode</span><span class="sf-desc">操作対象のおもちゃを選択します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 8 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">8</div><div class="tab-meta"><div class="tab-name">リソースパック</div><div class="tab-short">TractorGreenのモデルを別のものに置き換えるタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">リソースパックV1</span><span class="sf-desc">TractorGreenの見た目を別のモデルに置き換えます。元の機能は維持されます。</span></div>
-                    </div>
-                </div>
-
-                <!-- 9 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">9</div><div class="tab-meta"><div class="tab-name">スクリプトhub</div><div class="tab-short">外部スクリプトを読み込むタブです。動作保証外。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">シェーダー</span><span class="sf-desc">画面にシェーダー効果を適用。</span></div>
-                        <div class="sf"><span class="sf-name">空変え</span><span class="sf-desc">Skyboxを別のものに変更。</span></div>
-                        <div class="sf"><span class="sf-name">テトリス</span><span class="sf-desc">テトリスのミニゲームを起動。</span></div>
-                        <div class="sf"><span class="sf-name">クロスケ作v式飛行</span><span class="sf-desc">飛行スクリプトを起動。</span></div>
-                        <div class="sf"><span class="sf-name">HokutoHUB</span><span class="sf-desc">外部のHUBスクリプトを読み込みます。</span></div>
-                        <div class="sf"><span class="sf-name">uiを日本語に翻訳</span><span class="sf-desc">UIを日本語に翻訳するスクリプトを読み込みます。</span></div>
-                        <div class="sf"><span class="sf-name">FTAP TP</span><span class="sf-desc">テレポート系のスクリプトを読み込みます。</span></div>
-                    </div>
-                </div>
-
-                <!-- 10 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">10</div><div class="tab-meta"><div class="tab-name">オブジェクト設定</div><div class="tab-short">28種類のオブジェクトIDから選択できるタブです。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">全28種類のオブジェクトID</span><span class="sf-desc">FireworkSparkler、MusicKeyboard、TractorGreenなど28種類から選択できます。選択すると起動中の機能が自動で再起動します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 11 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">11</div><div class="tab-meta"><div class="tab-name">バリア破壊</div><div class="tab-short">特定の座標に移動してバリアを破壊する機能です。</div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">Barrier Break(BETA)</span><span class="sf-desc">特定の座標に移動してオカリナを使うことでバリアを破壊します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 12 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">12</div><div class="tab-meta"><div class="tab-name">フェザー[羽]</div><div class="tab-short">背中にフェザー(羽)を展開するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">フェザー起動</span><span class="sf-desc">フェザーを展開します。</span></div>
-                        <div class="sf"><span class="sf-name">最大オブジェクト数</span><span class="sf-desc">展開する羽の最大数。</span></div>
-                        <div class="sf"><span class="sf-name">オブジェクト間隔 / 高さオフセット / 背面オフセット</span><span class="sf-desc">羽の配置を調整するパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">傾き角度 / 上下動速度 / 基本振幅</span><span class="sf-desc">羽の動きを調整するパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 13 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">13</div><div class="tab-meta"><div class="tab-name">羽V2</div><div class="tab-short">FireworkSparklerで翼を形成するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">羽V2起動</span><span class="sf-desc">羽V2を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">翼の高さ位置 / 翼の広がり</span><span class="sf-desc">翼の位置と広がりを調整。</span></div>
-                        <div class="sf"><span class="sf-name">羽ばたき形状 / 羽ばたく速さ / 羽ばたく可動域</span><span class="sf-desc">羽ばたきの動きを調整するパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">片翼オブジェクト数 / チェーン遅延</span><span class="sf-desc">翼の構成と動きの遅延を設定。</span></div>
-                    </div>
-                </div>
-
-                <!-- 14 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">14</div><div class="tab-meta"><div class="tab-name">土星スパークラー</div><div class="tab-short">土星のような形状を作るアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">有効化</span><span class="sf-desc">土星スパークラーを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">配置モード</span><span class="sf-desc">土星(球体＋リング)、球体(立体)、リング(平面)、Plot(地面展開)から選択。</span></div>
-                        <div class="sf"><span class="sf-name">ベース高さ / 追従速度</span><span class="sf-desc">基準高さとプレイヤーへの追従速度。</span></div>
-                        <div class="sf"><span class="sf-name">リング半径 / リング速度</span><span class="sf-desc">リング部分のパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">球体半径 / 球体速度 / 球体レイヤー数</span><span class="sf-desc">球体部分のパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">Plot展開半径 / 浮遊高さ</span><span class="sf-desc">Plotモードのパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">再スキャン</span><span class="sf-desc">オブジェクトを再検出します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 15 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">15</div><div class="tab-meta"><div class="tab-name">魔法陣</div><div class="tab-short">魔法陣を展開するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">魔法陣起動</span><span class="sf-desc">魔法陣を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">シンボルタイプ</span><span class="sf-desc">Ring、Circle、Hexagramから選択。</span></div>
-                        <div class="sf"><span class="sf-name">発光効果</span><span class="sf-desc">発光エフェクトのON/OFF。</span></div>
-                        <div class="sf"><span class="sf-name">高さ / 直径 / オブジェクト数 / 回転速度</span><span class="sf-desc">魔法陣のサイズと動きを調整するパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 16 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">16</div><div class="tab-meta"><div class="tab-name">竜巻トイMOD</div><div class="tab-short">竜巻状にオブジェクトを配置するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">竜巻トイMOD 起動</span><span class="sf-desc">竜巻トイMODを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従 / 竜巻効果(渦巻き)</span><span class="sf-desc">追従と渦巻きエフェクトのON/OFF。</span></div>
-                        <div class="sf"><span class="sf-name">基本半径 / 基本高さ / 全体の高さ / 花火の数</span><span class="sf-desc">竜巻の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / らせん速度 / 波の速度 / 波の振幅</span><span class="sf-desc">竜巻の動きのパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">花火を再検出</span><span class="sf-desc">オブジェクトを再検出します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 17 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">17</div><div class="tab-meta"><div class="tab-name">観覧車</div><div class="tab-short">観覧車状にオブジェクトを配置するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">観覧車起動</span><span class="sf-desc">観覧車を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従 / 縦方向円 / 固定方向を使用</span><span class="sf-desc">配置モードと追従設定。</span></div>
-                        <div class="sf"><span class="sf-name">固定ヨー角 / 固定ピッチ角 / 固定ロール角</span><span class="sf-desc">固定方向の角度を設定するパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">半径 / 中心高さ / オブジェクト数 / 回転速度</span><span class="sf-desc">観覧車のサイズと動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 18 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">18</div><div class="tab-meta"><div class="tab-name">ハート</div><div class="tab-short">ハート形を地面に水平(XZ平面)に描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">ハート起動</span><span class="sf-desc">ハートを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">ハートサイズ / 基本高さ / オブジェクト数</span><span class="sf-desc">ハートのサイズと構成。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動振幅</span><span class="sf-desc">ハートの動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 19 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">19</div><div class="tab-meta"><div class="tab-name">縦ハート</div><div class="tab-short">ハート形を縦方向(XY平面)に描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">縦ハート起動</span><span class="sf-desc">縦ハートを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">ハートサイズ / 基本高さ / オブジェクト数</span><span class="sf-desc">縦ハートのサイズと構成。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動振幅</span><span class="sf-desc">縦ハートの動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 20 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">20</div><div class="tab-meta"><div class="tab-name">おっきぃハート</div><div class="tab-short">大きな横ハートを描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">おっきぃハート起動</span><span class="sf-desc">おっきぃハートを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">基本サイズ / 拡大率 / 縦方向引き伸ばし</span><span class="sf-desc">ハートの形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">基本高さ / オブジェクト数</span><span class="sf-desc">高さと構成。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動振幅</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 21 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">21</div><div class="tab-meta"><div class="tab-name">縦おっきぃハート</div><div class="tab-short">大きな縦ハートを描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">縦おっきぃハート起動</span><span class="sf-desc">縦おっきぃハートを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">基本サイズ / 拡大率 / 基本高さ / オブジェクト数</span><span class="sf-desc">縦ハートの形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動振幅</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 22 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">22</div><div class="tab-meta"><div class="tab-name">卍</div><div class="tab-short">卍を描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">卍(両方往復)</span><span class="sf-desc">2つのスパークラーで卍を描きます。</span></div>
-                        <div class="sf"><span class="sf-name">卍の大きさ / 描く速さ</span><span class="sf-desc">サイズと描画速度のパラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">スパークラーを再スキャン</span><span class="sf-desc">スパークラーを再検出します。</span></div>
-                    </div>
-                </div>
-
-                <!-- 23 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">23</div><div class="tab-meta"><div class="tab-name">球体◯</div><div class="tab-short">球体を描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">球体起動</span><span class="sf-desc">球体を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">球体半径 / 緯度線の数 / 経度線の数 / オブジェクト数</span><span class="sf-desc">球体の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">水平回転速度 / 垂直回転速度 / 脈動速度 / 脈動振幅</span><span class="sf-desc">球体の動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 24 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">24</div><div class="tab-meta"><div class="tab-name">ダビデの星</div><div class="tab-short">ダビデの星を描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">ダビデの星起動</span><span class="sf-desc">ダビデの星を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">星のサイズ / 基本高さ / 三角形の高さ / オブジェクト数</span><span class="sf-desc">星の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 25 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">25</div><div class="tab-meta"><div class="tab-name">スター</div><div class="tab-short">星を描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">スター起動</span><span class="sf-desc">スターを起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">外側半径 / 内側半径 / 基本高さ / オブジェクト数</span><span class="sf-desc">星の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / きらめき速度</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 26 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">26</div><div class="tab-meta"><div class="tab-name">スター2</div><div class="tab-short">光線付きの星を描くアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">スター2起動</span><span class="sf-desc">スター2を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">基本サイズ / 光線の長さ / 基本高さ / 光線の数 / オブジェクト数</span><span class="sf-desc">星の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動振幅 / ギザギザ速度 / ギザギザ量</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 27 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">27</div><div class="tab-meta"><div class="tab-name">N1: カオス・サークル</div><div class="tab-short">カオスな円運動アニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">N1起動</span><span class="sf-desc">N1を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">半径 / 基本高さ / オブジェクト数</span><span class="sf-desc">形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 脈動速度 / 脈動量</span><span class="sf-desc">動きのパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 28 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">28</div><div class="tab-meta"><div class="tab-name">N2: トルネード・スパイラル</div><div class="tab-short">竜巻状に上昇するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">N2起動</span><span class="sf-desc">N2を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">半径 / 最高高さ / オブジェクト数</span><span class="sf-desc">形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">回転速度 / 上昇速度 / カオス要素</span><span class="sf-desc">動きとカオス性のパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 29 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">29</div><div class="tab-meta"><div class="tab-name">N3: ハイパー・エクスプロージョン</div><div class="tab-short">爆発的に拡散するアニメーションです。</div><div class="tab-tags"><span class="tag-anim">アニメーション</span></div></div></div>
-                    <button class="detail-toggle" onclick="toggleDetail(this)">詳細を確認 <span>▼</span></button>
-                    <div class="tab-detail">
-                        <div class="sf"><span class="sf-name">N3起動</span><span class="sf-desc">N3を起動します。</span></div>
-                        <div class="sf"><span class="sf-name">プレイヤー追従</span><span class="sf-desc">プレイヤーに追従するかどうか。</span></div>
-                        <div class="sf"><span class="sf-name">爆発半径 / オブジェクト数</span><span class="sf-desc">爆発の形状パラメータ。</span></div>
-                        <div class="sf"><span class="sf-name">サイクル速度 / ランダム性</span><span class="sf-desc">動きとランダム性のパラメータ。</span></div>
-                    </div>
-                </div>
-
-                <!-- 30 -->
-                <div class="tab-card">
-                    <div class="tab-header"><div class="tab-num">30</div><div class="tab-meta"><div class="tab-name">情報とサポート</div><div class="tab-short">バージョン情報・サポート情報を確認できるタブです。</div></div></div>
-                </div>
-
-            </div><!-- /tabs-grid -->
-        </section>
-
-        <!-- DEVELOPERS -->
-        <section id="developers">
-            <h2>開発関係者一覧</h2>
-            <div class="developers-grid">
-                <div class="developer-card"><h3>akkii</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者 : 指導者</span><br>オブジェクト系<br>メインコード生成<br>外部スクリプトの作成と回収<br>UIの作成</p><a href="https://saturngroup02.github.io/.akkiiProfile/" target="_blank" class="profile-btn">プロフィール</a></div>
-                <div class="developer-card"><h3>yuzu</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者 : 開発提案者</span><br><span style="color:#ff6b6b;">脱退済み</span><br>オブジェクト系の基礎提供<br>土星スパークラーの提供<br>プロジェクト立上げ関係者</p><a href="https://www.tiktok.com/@yuzkiiiii_?_r=1&_t=ZS-9803o3VdZfs" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>Siro</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者</span><br>アンチ系の作成及び提供<br>オブジェクトIDの調べ方と基礎</p><a href="https://www.tiktok.com/@siroiekitai.ikuiku?_r=1&_t=ZS-98056f8S1lX" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>雪見だいふくの空箱</h3><p class="role">kickソースコード提供者</p><a href="https://www.tiktok.com/@tsabuwbtcyf?_r=1&_t=ZS-9804U7vJSCN" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>Grok</h3><p class="role">kickソースコード提供者</p><a href="https://www.tiktok.com/@grok_chickenhubowner?_r=1&_t=ZS-9804Vo4gGUJ" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>Holon</h3><p class="role">ピアノソースコード提供者</p><a href="https://www.tiktok.com/@holoncalm?_r=1&_t=ZS-9804WWHIPH5" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>にゅずぴー</h3><p class="role">SRBMのソースコードを提供してくれました</p><a href="https://www.tiktok.com/@nyuzupi?_r=1&_t=ZS-9804atmJ8p5" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>クロスケ</h3><p class="role">vFlyの追加を許可してくれました</p><a href="https://www.tiktok.com/@kurosuke_zinnsei?_r=1&_t=ZS-9804mgREhQQ" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>Kame</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@kame.dev?_r=1&_t=ZS-9804p27AnFC" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>BG_Hack</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@logfeetst?_r=1&_t=ZS-9804uxBdDmS" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>imosuke</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@imosuke923" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>きーち</h3><p class="role">卍アニメーションソースコードを提供</p><a href="https://www.tiktok.com/@ki.chi582?lang=ja-JP" target="_blank" class="tiktok-btn">TikTok</a></div>
-                <div class="developer-card"><h3>ポザーs</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@pozasss?lang=ja-JP" target="_blank" class="tiktok-btn">TikTok</a></div>
-            </div>
-            <div class="others-section"><h3>その他の方々</h3><p>外部スクリプトなど…</p></div>
-            <div class="ai-section"><h3>使用されたAI</h3><div class="ai-list"><div class="ai-category"><strong>メイン：</strong> DeepSeek</div><div class="ai-category"><strong>サポート：</strong> xAI-Grok</div></div></div>
-        </section>
-
-        <!-- GITHUB -->
-        <section id="github">
-            <h2>GitHub を閲覧</h2>
-            <p style="color:#e0e0e0;margin-bottom:20px;" id="github-desc">Sakurahub 関連レポジトリ</p>
-            <div class="github-grid">
-                <a href="https://github.com/SaturnGroup02/Sakura-Hub-main" target="_blank" class="github-card"><span>📦</span><span>Sakura-Hub-main</span></a>
-                <a href="https://github.com/SaturnGroup02/Sakurahub-ja-en-vn-123-" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-ja-en-vn-123</span></a>
-                <a href="https://github.com/SaturnGroup02/Sakurahub-SabuHUB" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-SabuHUB</span></a>
-                <a href="https://github.com/SaturnGroup02/Sakurahub-beta/tree/main" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-beta</span></a>
-            </div>
-        </section>
-
-        <!-- TERMS -->
-        <section id="terms">
-            <h2>利用規約</h2>
-            <p style="color:#e0e0e0;margin-bottom:25px;" id="terms-desc">SakuraHUBをご利用いただく前に、利用規約をお読みください。</p>
-            <a href="https://raw.githubusercontent.com/SaturnGroup02/SakuraHUB--/refs/heads/main/rterms%20of%20service" class="community-btn" target="_blank" id="terms-btn">利用規約を読む</a>
-        </section>
+<canvas id="matrix"></canvas>
+<nav class="top-nav">
+    <a onclick="scrollToSection('#home')">Home</a>
+    <a onclick="scrollToSection('#faq')">FAQ</a>
+    <a onclick="scrollToSection('#features')">機能一覧</a>
+    <a onclick="scrollToSection('#developers')">開発関係者一覧</a>
+    <a onclick="scrollToSection('#github')">GitHub</a>
+    <a onclick="scrollToSection('#terms')">利用規約</a>
+    <div class="language-switcher">
+        <button onclick="changeLanguage('ja')" title="日本語">🇯🇵</button>
+        <button onclick="changeLanguage('vn')" title="ベトナム語">🇻🇳</button>
+        <button onclick="changeLanguage('en')" title="英語">🇬🇧</button>
+        <button onclick="changeLanguage('ru')" title="ロシア語">🇷🇺</button>
+        <button onclick="changeLanguage('th')" title="タイ語">🇹🇭</button>
     </div>
+</nav>
+<header>
+    <div class="header-content">
+        <div class="logo">🌸 SakuraHUB</div>
+        <nav>
+            <a href="#home">Home</a><a href="#faq">FAQ</a><a href="#features">機能一覧</a>
+            <a href="#developers">開発関係者一覧</a><a href="#github">GitHub</a><a href="#terms">利用規約</a>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <div class="hero" id="home"><h1>🌸 SakuraHUBページ</h1><p>次世代のオープンFTAPスクリプトハブ</p></div>
+    <div class="community-section">
+        <a href="https://discord.gg/qFQTe7rcyE" class="community-btn" target="_blank">Discord に参加</a>
+        <a href="https://line.me/ti/g2/-CBPty1N0v2XuNPqaJm5xLmCBt0wBr3_vxrOqQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="community-btn" target="_blank">LINE オープンチャット</a>
+    </div>
+    <div class="script-section">
+        <div class="script-box">
+            <div class="script-header"><h3>📋 SakuraHUB スクリプト</h3><button class="copy-btn" onclick="copyScript()">コピー</button></div>
+            <pre id="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/SaturnGroup02/Sakura-Hub-main/refs/heads/main/Sakura%20main"))()</pre>
+        </div>
+    </div>
+    <section id="faq">
+        <h2>よくある質問 (FAQ)</h2>
+        <div class="faq-item"><h3>❓ ソースコードはどこで入手できますか？</h3><p>DiscordまたはGitHubで入手できます。</p></div>
+        <div class="faq-item"><h3>❓ 対応言語は何ですか？</h3><p>日本語、ベトナム語、英語、その他</p></div>
+        <div class="faq-item"><h3>❓ 安全ですか？</h3><p>はい、オープンソースコードです。</p></div>
+        <div class="faq-item"><h3>❓ さくらhubの種類は？</h3><p>V0.5、V0.6、V0.7があります。V0.5のサポートは完全に終了しました。</p></div>
+        <div class="faq-item"><h3>❓ サポート状況は？</h3><p>公式完全サポートは2026/12/15をもって終了予定</p></div>
+    </section>
+    <section id="features">
+        <h2>機能一覧</h2>
+        <div class="feature-version">🌸 さくらhub V0.7 — v0.7.2.140</div>
+        <div class="feature-count" id="feature-count">全30タブ、100以上の機能を搭載</div>
+        <div class="tabs-grid" id="tabs-grid"></div>
+    </section>
+    <section id="developers">
+        <h2>開発関係者一覧</h2>
+        <div class="developers-grid">
+            <div class="developer-card"><h3>akkii</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者 : 指導者</span><br>オブジェクト系<br>メインコード生成<br>外部スクリプトの作成と回収<br>UIの作成</p><a href="https://saturngroup02.github.io/.akkiiProfile/" target="_blank" class="profile-btn">プロフィール</a></div>
+            <div class="developer-card"><h3>yuzu</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者 : 開発提案者</span><br><span style="color:#ff6b6b;">脱退済み</span><br>オブジェクト系の基礎提供<br>土星スパークラーの提供<br>プロジェクト立上げ関係者</p><a href="https://www.tiktok.com/@yuzkiiiii_?_r=1&_t=ZS-9803o3VdZfs" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>Siro</h3><p class="role"><span style="color:#ffaa00;font-weight:bold;">共同創設者</span><br>アンチ系の作成及び提供<br>オブジェクトIDの調べ方と基礎</p><a href="https://www.tiktok.com/@siroiekitai.ikuiku?_r=1&_t=ZS-98056f8S1lX" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>雪見だいふくの空箱</h3><p class="role">kickソースコード提供者</p><a href="https://www.tiktok.com/@tsabuwbtcyf?_r=1&_t=ZS-9804U7vJSCN" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>Grok</h3><p class="role">kickソースコード提供者</p><a href="https://www.tiktok.com/@grok_chickenhubowner?_r=1&_t=ZS-9804Vo4gGUJ" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>Holon</h3><p class="role">ピアノソースコード提供者</p><a href="https://www.tiktok.com/@holoncalm?_r=1&_t=ZS-9804WWHIPH5" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>にゅずぴー</h3><p class="role">SRBMのソースコードを提供してくれました</p><a href="https://www.tiktok.com/@nyuzupi?_r=1&_t=ZS-9804atmJ8p5" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>クロスケ</h3><p class="role">vFlyの追加を許可してくれました</p><a href="https://www.tiktok.com/@kurosuke_zinnsei?_r=1&_t=ZS-9804mgREhQQ" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>Kame</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@kame.dev?_r=1&_t=ZS-9804p27AnFC" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>BG_Hack</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@logfeetst?_r=1&_t=ZS-9804uxBdDmS" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>imosuke</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@imosuke923" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>きーち</h3><p class="role">卍アニメーションソースコードを提供</p><a href="https://www.tiktok.com/@ki.chi582?lang=ja-JP" target="_blank" class="tiktok-btn">TikTok</a></div>
+            <div class="developer-card"><h3>ポザーs</h3><p class="role">サポーター</p><a href="https://www.tiktok.com/@pozasss?lang=ja-JP" target="_blank" class="tiktok-btn">TikTok</a></div>
+        </div>
+        <div class="others-section"><h3>その他の方々</h3><p>外部スクリプトなど…</p></div>
+        <div class="ai-section"><h3>使用されたAI</h3><div class="ai-category"><strong>メイン：</strong> DeepSeek</div><div class="ai-category"><strong>サポート：</strong> xAI-Grok</div></div>
+    </section>
+    <section id="github">
+        <h2>GitHub を閲覧</h2>
+        <p style="color:#e0e0e0;margin-bottom:20px;" id="github-desc">Sakurahub 関連レポジトリ</p>
+        <div class="github-grid">
+            <a href="https://github.com/SaturnGroup02/Sakura-Hub-main" target="_blank" class="github-card"><span>📦</span><span>Sakura-Hub-main</span></a>
+            <a href="https://github.com/SaturnGroup02/Sakurahub-ja-en-vn-123-" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-ja-en-vn-123</span></a>
+            <a href="https://github.com/SaturnGroup02/Sakurahub-SabuHUB" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-SabuHUB</span></a>
+            <a href="https://github.com/SaturnGroup02/Sakurahub-beta/tree/main" target="_blank" class="github-card"><span>📦</span><span>Sakurahub-beta</span></a>
+        </div>
+    </section>
+    <section id="terms">
+        <h2>利用規約</h2>
+        <p style="color:#e0e0e0;margin-bottom:25px;" id="terms-desc">SakuraHUBをご利用いただく前に、利用規約をお読みください。</p>
+        <a href="https://raw.githubusercontent.com/SaturnGroup02/SakuraHUB--/refs/heads/main/rterms%20of%20service" class="community-btn" target="_blank" id="terms-btn">利用規約を読む</a>
+    </section>
+</div>
+<footer><p id="footer-text">&copy; 2024 SakuraHUB Community. All rights reserved.</p></footer>
+<script>
+// ===== TAB DATA =====
+// Format: {name, short, tags:[], sections:[{title,feats:[[name,desc],...]}]}
+const T = {
+ja:[
+ {name:'Me(=^・^=)',short:'自分の移動・視界に関する機能をまとめたタブです。',tags:[],sections:[{title:null,feats:[
+  ['無限ジャンプ','空中でも何度でもジャンプできます。'],
+  ['ノークリップ','壁やオブジェクトをすり抜けて移動できます。'],
+  ['TPWalk','速度16〜500で高速移動。WASDで方向指定。'],
+  ['TPWalk速度','移動速度を調整するスライダー。'],
+  ['ESP','他プレイヤーの頭上に名前と距離を表示。壁越し可。'],
+  ['三人称視点','カメラを三人称モードに切り替えます。'],
+  ['FOV','視野角を-5〜180で調整できます。'],
+  ['FOVリセット','FOVをデフォルト値70に戻します。'],
+  ['全機能停止','起動中のすべての機能を一括停止します。']]}]},
+ {name:'GUI',short:'補助的なGUIを起動するためのタブです。',tags:[],sections:[{title:null,feats:[
+  ['固定GUI','照準で狙ったオブジェクトを固定/解除するGUI。MENUボタンで切替。'],
+  ['TTP GUI','外部テレポート・固定GUI。バックスラッシュキーで起動。'],
+  ['SaluraHUB-keyboard.GUI','外部キーボードGUIを読み込みます。']]}]},
+ {name:'アンチ',short:'他のプレイヤーからの攻撃を防ぐ機能をまとめたタブです。',tags:[],sections:[{title:null,feats:[
+  ['掴まれても脱出(シンプル)','Struggleを連打してアンカーで脱出します。'],
+  ['Anti Grab V2(強化)','コリジョンオフ・Ragdoll解除・物理ロックで脱出。'],
+  ['Anti Gucci','トラクターによる拉致を防ぐ。自動でトラクターを上空に飛ばします。'],
+  ['Anti Void','ボイド落下を防ぐ。FallenPartsDestroyHeightを無効化します。']]}]},
+ {name:'攻撃系',short:'他のプレイヤーを攻撃する機能のタブです。悪用厳禁。',tags:['danger'],sections:[
+  {title:'【キックV1(ブロブ掴み)】',feats:[
+   ['ターゲットプレイヤー','攻撃対象を選択するドロップダウン。'],
+   ['プレイヤーリスト更新','プレイヤーリストを最新の状態に更新。'],
+   ['ループキックV1','ブロブに座りながら対象を自動でループキック。']]},
+  {title:'【キックV2(軌道＆掴み)】',feats:[
+   ['ターゲットを選択','攻撃対象を選択。'],
+   ['ドリフトキックV2','ブロブマンで円軌道を回転しながらキック。']]},
+  {title:'【ふっとばす】',feats:[
+   ['ふっとばす！','選択したプレイヤーをブロブで吹き飛ばす。'],
+   ['無限ジャンプ / 三人称視点','ふっとばす専用の補助機能。']]},
+  {title:'【全員キック】',feats:[
+   ['全員キック','サーバー内の全プレイヤーを一括キック。'],
+   ['フレンドを除外','フレンドをキック対象から除外するオプション。']]},
+  {title:'【スフィアオービットキックV1】',feats:[
+   ['実行(球体軌道キック)','対象の周囲を3D球体軌道で高速回転しながらキック。'],
+   ['軌道半径 / 軌道速度 / 浮遊高さ','軌道のパラメータを調整。'],
+   ['球体傾き / 軌道複雑さ / エフェクト表示','軌道の形状とエフェクトを調整。']]}]},
+ {name:'汽車を乗っ取る',short:'列車に関連する自動化機能のタブです。',tags:[],sections:[{title:null,feats:[
+  ['ランダムな空席に座る','空いている座席を探して自動的に座ります。'],
+  ['自動化を有効化','乗車・降車時にオカリナとマヨネーズを自動操作。'],
+  ['vFly GUI起動','外部の飛行GUI。WASD+QEで飛行できます。']]}]},
+ {name:'楽譜演奏',short:'ピアノで自動演奏するためのタブです。',tags:[],sections:[
+  {title:'【ピアノ制御】',feats:[
+   ['ピアノ機能を有効化','MusicKeyboardを検出して自動演奏を可能にします。'],
+   ['プレイヤー追従','ピアノをプレイヤーに追従させます。']]},
+  {title:'【曲の再生(テキスト入力)】',feats:[
+   ['JSONデータを入力','楽曲データをJSON形式で入力するテキストボックス。'],
+   ['入力した曲を再生 / 再生を停止','自動演奏の開始・停止。']]},
+  {title:'【MIDI→JSON コンバーター】',feats:[
+   ['コンバーターを開く(ブラウザ)','MIDIファイルをJSONに変換するウェブページを開きます。'],
+   ['URLをコピー','コンバーターのURLをクリップボードにコピー。']]}]},
+ {name:'SRBM',short:'自分のおもちゃを操作するタブです。',tags:[],sections:[
+  {title:'【HUD表示】',feats:[['HUD表示(画像+座標)','画面中央に画像と座標を表示。Pキーで表示切替。']]},
+  {title:'【その他】',feats:[
+   ['ICBM','ボムミサイルを操作して弾道飛行させる機能。'],
+   ['Third Person','三人称視点に切り替えます。'],
+   ['Helicopter Control','ヘリコプターを操作。WASD+ZXで操作。'],
+   ['Toy Mode','操作対象のおもちゃを選択します。']]}]},
+ {name:'リソースパック',short:'TractorGreenの見た目を別モデルに置き換えるタブです。',tags:[],sections:[{title:null,feats:[
+  ['リソースパックV1','TractorGreenの見た目を別のモデルに置き換えます。元の機能は維持されます。']]}]},
+ {name:'スクリプトhub',short:'外部スクリプトを読み込むタブです。動作保証外。',tags:[],sections:[{title:null,feats:[
+  ['シェーダー','画面にシェーダー効果を適用。'],
+  ['空変え','Skyboxを別のものに変更。'],
+  ['テトリス','テトリスのミニゲームを起動。'],
+  ['クロスケ作v式飛行','飛行スクリプトを起動。'],
+  ['HokutoHUB','外部のHUBスクリプトを読み込みます。'],
+  ['uiを日本語に翻訳','UIを日本語に翻訳するスクリプトを読み込みます。'],
+  ['FTAP TP','テレポート系のスクリプトを読み込みます。']]}]},
+ {name:'オブジェクト設定',short:'28種類のオブジェクトIDから選択できるタブです。',tags:[],sections:[{title:null,feats:[
+  ['全28種類のオブジェクトID','FireworkSparkler、MusicKeyboard、TractorGreenなど28種類から選択。選択すると起動中の機能が自動で再起動します。']]}]},
+ {name:'バリア破壊',short:'特定の座標に移動してバリアを破壊する機能です。',tags:[],sections:[{title:null,feats:[
+  ['Barrier Break(BETA)','特定の座標に移動してオカリナを使うことでバリアを破壊します。']]}]},
+ {name:'フェザー[羽]',short:'背中にフェザー(羽)を展開するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['フェザー起動','フェザーを展開します。'],
+  ['最大オブジェクト数','展開する羽の最大数。'],
+  ['オブジェクト間隔 / 高さオフセット / 背面オフセット','羽の配置を調整するパラメータ。'],
+  ['傾き角度 / 上下動速度 / 基本振幅','羽の動きを調整するパラメータ。']]}]},
+ {name:'羽V2',short:'FireworkSparklerで翼を形成するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['羽V2起動','羽V2を起動します。'],
+  ['翼の高さ位置 / 翼の広がり','翼の位置と広がりを調整。'],
+  ['羽ばたき形状 / 羽ばたく速さ / 羽ばたく可動域','羽ばたきの動きを調整するパラメータ。'],
+  ['片翼オブジェクト数 / チェーン遅延','翼の構成と動きの遅延を設定。']]}]},
+ {name:'土星スパークラー',short:'土星のような形状を作るアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['有効化','土星スパークラーを起動します。'],
+  ['配置モード','土星(球体＋リング)、球体(立体)、リング(平面)、Plot(地面展開)から選択。'],
+  ['ベース高さ / 追従速度','基準高さとプレイヤーへの追従速度。'],
+  ['リング半径 / リング速度','リング部分のパラメータ。'],
+  ['球体半径 / 球体速度 / 球体レイヤー数','球体部分のパラメータ。'],
+  ['Plot展開半径 / 浮遊高さ','Plotモードのパラメータ。'],
+  ['再スキャン','オブジェクトを再検出します。']]}]},
+ {name:'魔法陣',short:'魔法陣を展開するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['魔法陣起動','魔法陣を起動します。'],
+  ['シンボルタイプ','Ring、Circle、Hexagramから選択。'],
+  ['発光効果','発光エフェクトのON/OFF。'],
+  ['高さ / 直径 / オブジェクト数 / 回転速度','魔法陣のサイズと動きを調整するパラメータ。']]}]},
+ {name:'竜巻トイMOD',short:'竜巻状にオブジェクトを配置するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['竜巻トイMOD 起動','竜巻トイMODを起動します。'],
+  ['プレイヤー追従 / 竜巻効果(渦巻き)','追従と渦巻きエフェクトのON/OFF。'],
+  ['基本半径 / 基本高さ / 全体の高さ / 花火の数','竜巻の形状パラメータ。'],
+  ['回転速度 / らせん速度 / 波の速度 / 波の振幅','竜巻の動きのパラメータ。'],
+  ['花火を再検出','オブジェクトを再検出します。']]}]},
+ {name:'観覧車',short:'観覧車状にオブジェクトを配置するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['観覧車起動','観覧車を起動します。'],
+  ['プレイヤー追従 / 縦方向円 / 固定方向を使用','配置モードと追従設定。'],
+  ['固定ヨー角 / 固定ピッチ角 / 固定ロール角','固定方向の角度を設定するパラメータ。'],
+  ['半径 / 中心高さ / オブジェクト数 / 回転速度','観覧車のサイズと動きのパラメータ。']]}]},
+ {name:'ハート',short:'ハート形を地面に水平(XZ平面)に描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['ハート起動','ハートを起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['ハートサイズ / 基本高さ / オブジェクト数','ハートのサイズと構成。'],
+  ['回転速度 / 脈動速度 / 脈動振幅','ハートの動きのパラメータ。']]}]},
+ {name:'縦ハート',short:'ハート形を縦方向(XY平面)に描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['縦ハート起動','縦ハートを起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['ハートサイズ / 基本高さ / オブジェクト数','縦ハートのサイズと構成。'],
+  ['回転速度 / 脈動速度 / 脈動振幅','縦ハートの動きのパラメータ。']]}]},
+ {name:'おっきぃハート',short:'大きな横ハートを描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['おっきぃハート起動','おっきぃハートを起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['基本サイズ / 拡大率 / 縦方向引き伸ばし','ハートの形状パラメータ。'],
+  ['基本高さ / オブジェクト数','高さと構成。'],
+  ['回転速度 / 脈動速度 / 脈動振幅','動きのパラメータ。']]}]},
+ {name:'縦おっきぃハート',short:'大きな縦ハートを描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['縦おっきぃハート起動','縦おっきぃハートを起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['基本サイズ / 拡大率 / 基本高さ / オブジェクト数','縦ハートの形状パラメータ。'],
+  ['回転速度 / 脈動速度 / 脈動振幅','動きのパラメータ。']]}]},
+ {name:'卍',short:'卍を描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['卍(両方往復)','2つのスパークラーで卍を描きます。'],
+  ['卍の大きさ / 描く速さ','サイズと描画速度のパラメータ。'],
+  ['スパークラーを再スキャン','スパークラーを再検出します。']]}]},
+ {name:'球体◯',short:'球体を描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['球体起動','球体を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['球体半径 / 緯度線の数 / 経度線の数 / オブジェクト数','球体の形状パラメータ。'],
+  ['水平回転速度 / 垂直回転速度 / 脈動速度 / 脈動振幅','球体の動きのパラメータ。']]}]},
+ {name:'ダビデの星',short:'ダビデの星を描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['ダビデの星起動','ダビデの星を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['星のサイズ / 基本高さ / 三角形の高さ / オブジェクト数','星の形状パラメータ。'],
+  ['回転速度 / 脈動速度','動きのパラメータ。']]}]},
+ {name:'スター',short:'星を描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['スター起動','スターを起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['外側半径 / 内側半径 / 基本高さ / オブジェクト数','星の形状パラメータ。'],
+  ['回転速度 / きらめき速度','動きのパラメータ。']]}]},
+ {name:'スター2',short:'光線付きの星を描くアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['スター2起動','スター2を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['基本サイズ / 光線の長さ / 基本高さ / 光線の数 / オブジェクト数','星の形状パラメータ。'],
+  ['回転速度 / 脈動速度 / 脈動振幅 / ギザギザ速度 / ギザギザ量','動きのパラメータ。']]}]},
+ {name:'N1: カオス・サークル',short:'カオスな円運動アニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['N1起動','N1を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['半径 / 基本高さ / オブジェクト数','形状パラメータ。'],
+  ['回転速度 / 脈動速度 / 脈動量','動きのパラメータ。']]}]},
+ {name:'N2: トルネード・スパイラル',short:'竜巻状に上昇するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['N2起動','N2を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['半径 / 最高高さ / オブジェクト数','形状パラメータ。'],
+  ['回転速度 / 上昇速度 / カオス要素','動きとカオス性のパラメータ。']]}]},
+ {name:'N3: ハイパー・エクスプロージョン',short:'爆発的に拡散するアニメーションです。',tags:['anim'],sections:[{title:null,feats:[
+  ['N3起動','N3を起動します。'],
+  ['プレイヤー追従','プレイヤーに追従するかどうか。'],
+  ['爆発半径 / オブジェクト数','爆発の形状パラメータ。'],
+  ['サイクル速度 / ランダム性','動きとランダム性のパラメータ。']]}]},
+ {name:'情報とサポート',short:'バージョン情報・サポート情報を確認できるタブです。',tags:[],sections:[]}
+],
+en:[
+ {name:'Me(=^・^=)',short:'Tab for self-movement and vision control features.',tags:[],sections:[{title:null,feats:[
+  ['Infinite Jump','Jump unlimited times, even in mid-air.'],
+  ['No-Clip','Move through walls and objects.'],
+  ['TPWalk','High-speed movement at speed 16–500. WASD for direction.'],
+  ['TPWalk Speed','Slider to adjust TPWalk movement speed.'],
+  ['ESP','Shows other players\' names and distance overhead, even through walls.'],
+  ['Third Person','Switch camera to third-person mode.'],
+  ['FOV','Adjust field of view from -5 to 180.'],
+  ['FOV Reset','Reset FOV to default value of 70.'],
+  ['Stop All Features','Stop all currently active features at once.']]}]},
+ {name:'GUI',short:'Tab to launch auxiliary GUIs.',tags:[],sections:[{title:null,feats:[
+  ['Fixed GUI','GUI to lock/unlock objects using a center crosshair. Toggle with MENU button.'],
+  ['TTP GUI','External teleport & lock GUI. Launch with backslash key.'],
+  ['SaluraHUB-keyboard.GUI','Loads an external keyboard GUI.']]}]},
+ {name:'Anti',short:'Tab with protection features against other players\' attacks.',tags:[],sections:[{title:null,feats:[
+  ['Escape When Grabbed (Simple)','Escape grabs by spamming Struggle and anchoring.'],
+  ['Anti Grab V2 (Enhanced)','Escapes grabs by disabling collision, canceling Ragdoll, and physics locking.'],
+  ['Anti Gucci','Prevents tractor abduction. Auto-generates a tractor and sends it skyward.'],
+  ['Anti Void','Prevents falling into the void. Disables FallenPartsDestroyHeight.']]}]},
+ {name:'Attack System',short:'Tab with features to attack other players. Strictly no abuse.',tags:['danger'],sections:[
+  {title:'【Kick V1 (Blob Grab)】',feats:[
+   ['Target Player','Dropdown to select the attack target.'],
+   ['Update Player List','Refresh the player list.'],
+   ['Loop Kick V1','Auto loop-kicks the target while sitting on a blob creature.']]},
+  {title:'【Kick V2 (Orbit & Grab)】',feats:[
+   ['Select Target','Select the attack target.'],
+   ['Drift Kick V2','Kick while rotating in a circular orbit around the target using a blob man.']]},
+  {title:'【Launch Away】',feats:[
+   ['Launch Away!','Blast the selected player away with a blob.'],
+   ['Infinite Jump / Third Person','Auxiliary features for launching.']]},
+  {title:'【Kick Everyone】',feats:[
+   ['Kick Everyone','Kick all players in the server at once.'],
+   ['Exclude Friends','Option to exclude friends from the kick.']]},
+  {title:'【Sphere Orbit Kick V1】',feats:[
+   ['Execute (Sphere Orbit Kick)','Kick while spinning in a 3D spherical orbit around the target.'],
+   ['Orbit Radius / Orbit Speed / Float Height','Adjust orbit parameters.'],
+   ['Sphere Tilt / Orbit Complexity / Effect Display','Adjust orbit shape and effects.']]}]},
+ {name:'Hijack Train',short:'Tab with train automation features.',tags:[],sections:[{title:null,feats:[
+  ['Sit in Random Empty Seat','Automatically find and sit in an empty seat.'],
+  ['Enable Automation','Auto-operate ocarina and mayonnaise when boarding/alighting.'],
+  ['Launch vFly GUI','Load external flight GUI. Fly with WASD+QE.']]}]},
+ {name:'Music Player',short:'Tab for auto-playing the piano.',tags:[],sections:[
+  {title:'【Piano Control】',feats:[
+   ['Enable Piano','Detect MusicKeyboard and enable auto-play.'],
+   ['Follow Player','Make the piano follow the player.']]},
+  {title:'【Play Song (Text Input)】',feats:[
+   ['Enter JSON Data','Text box to enter song data in JSON format.'],
+   ['Play / Stop','Start or stop auto-play.']]},
+  {title:'【MIDI→JSON Converter】',feats:[
+   ['Open Converter (Browser)','Opens a web page to convert MIDI files to JSON.'],
+   ['Copy URL','Copy the converter URL to clipboard.']]}]},
+ {name:'SRBM',short:'Tab to control your own toys.',tags:[],sections:[
+  {title:'【HUD Display】',feats:[['HUD Display (Image + Coordinates)','Display image and coordinates at center. Toggle with P key.']]},
+  {title:'【Other】',feats:[
+   ['ICBM','Operate a bomb missile in ballistic flight.'],
+   ['Third Person','Switch to third-person view.'],
+   ['Helicopter Control','Control a helicopter. Operate with WASD+ZX.'],
+   ['Toy Mode','Select the toy to control.']]}]},
+ {name:'Resource Pack',short:'Tab to replace TractorGreen\'s appearance with another model.',tags:[],sections:[{title:null,feats:[
+  ['Resource Pack V1','Replace TractorGreen\'s model with another. Original functions maintained.']]}]},
+ {name:'Script Hub',short:'Tab to load external scripts. No guarantee of operation.',tags:[],sections:[{title:null,feats:[
+  ['Shader','Apply shader effects to the screen.'],
+  ['Change Sky','Change the Skybox to another.'],
+  ['Tetris','Launch a Tetris mini-game.'],
+  ['Kurosuke vFly','Launch flight script.'],
+  ['HokutoHUB','Load an external HUB script.'],
+  ['Translate UI to Japanese','Load a script to translate the UI to Japanese.'],
+  ['FTAP TP','Load a teleport script.']]}]},
+ {name:'Object Settings',short:'Tab to select from 28 object types.',tags:[],sections:[{title:null,feats:[
+  ['28 Object IDs','Select from 28 types including FireworkSparkler, MusicKeyboard, TractorGreen. Active features auto-restart on selection.']]}]},
+ {name:'Barrier Break',short:'Feature to break barriers at specific coordinates.',tags:[],sections:[{title:null,feats:[
+  ['Barrier Break (BETA)','Move to specific coordinates and use ocarina to break barriers.']]}]},
+ {name:'Feather [Wings]',short:'Animation that deploys feathers on your back.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Feather','Deploy the feathers.'],
+  ['Max Object Count','Maximum number of feathers to deploy.'],
+  ['Spacing / Height Offset / Back Offset','Parameters to adjust feather placement.'],
+  ['Tilt Angle / Up-Down Speed / Base Amplitude','Parameters to adjust feather movement.']]}]},
+ {name:'Wings V2',short:'Animation that forms wings with FireworkSparkler.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Wings V2','Start Wings V2.'],
+  ['Wing Height / Wing Spread','Adjust wing position and spread.'],
+  ['Flap Shape / Flap Speed / Flap Range','Parameters for flapping motion.'],
+  ['Objects Per Wing / Chain Delay','Wing composition and motion delay settings.']]}]},
+ {name:'Saturn Sparkler',short:'Animation that creates Saturn-like shapes.',tags:['anim'],sections:[{title:null,feats:[
+  ['Enable','Start Saturn Sparkler.'],
+  ['Layout Mode','Choose Saturn (sphere+ring), Sphere (3D), Ring (flat), Plot (ground).'],
+  ['Base Height / Follow Speed','Base height and follow speed settings.'],
+  ['Ring Radius / Ring Speed','Ring parameters.'],
+  ['Sphere Radius / Sphere Speed / Sphere Layers','Sphere parameters.'],
+  ['Plot Radius / Float Height','Plot mode parameters.'],
+  ['Rescan','Re-detect objects.']]}]},
+ {name:'Magic Circle',short:'Animation that deploys a magic circle.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Magic Circle','Start the magic circle.'],
+  ['Symbol Type','Choose from Ring, Circle, Hexagram.'],
+  ['Glow Effect','Toggle glow effect ON/OFF.'],
+  ['Height / Diameter / Object Count / Rotation Speed','Parameters for size and movement.']]}]},
+ {name:'Tornado Toy MOD',short:'Animation arranging objects in a tornado pattern.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Tornado Toy MOD','Start the tornado.'],
+  ['Player Follow / Tornado Effect (Swirl)','Toggle follow and swirl effect.'],
+  ['Base Radius / Base Height / Total Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Spiral Speed / Wave Speed / Wave Amplitude','Movement parameters.'],
+  ['Rescan Objects','Re-detect objects.']]}]},
+ {name:'Ferris Wheel',short:'Animation arranging objects like a ferris wheel.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Ferris Wheel','Start the ferris wheel.'],
+  ['Player Follow / Vertical Circle / Use Fixed Direction','Layout and follow settings.'],
+  ['Fixed Yaw / Fixed Pitch / Fixed Roll','Fixed direction angle parameters.'],
+  ['Radius / Center Height / Object Count / Rotation Speed','Size and movement parameters.']]}]},
+ {name:'Heart',short:'Animation drawing a horizontal heart shape on the ground (XZ plane).',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Heart','Start the heart.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Heart Size / Base Height / Object Count','Size and composition.'],
+  ['Rotation Speed / Pulse Speed / Pulse Amplitude','Movement parameters.']]}]},
+ {name:'Vertical Heart',short:'Animation drawing a vertical heart shape (XY plane).',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Vertical Heart','Start the vertical heart.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Heart Size / Base Height / Object Count','Size and composition.'],
+  ['Rotation Speed / Pulse Speed / Pulse Amplitude','Movement parameters.']]}]},
+ {name:'Big Heart',short:'Animation drawing a large horizontal heart.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Big Heart','Start the big heart.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Base Size / Scale / Vertical Stretch','Shape parameters.'],
+  ['Base Height / Object Count','Height and composition.'],
+  ['Rotation Speed / Pulse Speed / Pulse Amplitude','Movement parameters.']]}]},
+ {name:'Vertical Big Heart',short:'Animation drawing a large vertical heart.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Vertical Big Heart','Start the vertical big heart.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Base Size / Scale / Base Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Pulse Speed / Pulse Amplitude','Movement parameters.']]}]},
+ {name:'卍',short:'Animation drawing the 卍 symbol.',tags:['anim'],sections:[{title:null,feats:[
+  ['卍 (Both Directions)','Draw the 卍 with two sparklers.'],
+  ['Size / Draw Speed','Size and drawing speed.'],
+  ['Rescan Sparklers','Re-detect sparklers.']]}]},
+ {name:'Sphere',short:'Animation drawing a sphere.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Sphere','Start the sphere.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Sphere Radius / Latitude Lines / Longitude Lines / Object Count','Shape parameters.'],
+  ['Horizontal Spin / Vertical Spin / Pulse Speed / Pulse Amplitude','Movement parameters.']]}]},
+ {name:'Star of David',short:'Animation drawing the Star of David.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Star of David','Start the Star of David.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Star Size / Base Height / Triangle Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Pulse Speed','Movement parameters.']]}]},
+ {name:'Star',short:'Animation drawing a star.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Star','Start the star.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Outer Radius / Inner Radius / Base Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Sparkle Speed','Movement parameters.']]}]},
+ {name:'Star 2',short:'Animation drawing a star with light rays.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch Star 2','Start Star 2.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Base Size / Ray Length / Base Height / Ray Count / Object Count','Shape parameters.'],
+  ['Rotation / Pulse / Pulse Amplitude / Jagged Speed / Jagged Amount','Movement parameters.']]}]},
+ {name:'N1: Chaos Circle',short:'Chaotic circular motion animation.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch N1','Start N1.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Radius / Base Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Pulse Speed / Pulse Amount','Movement parameters.']]}]},
+ {name:'N2: Tornado Spiral',short:'Animation that rises in a tornado spiral.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch N2','Start N2.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Radius / Max Height / Object Count','Shape parameters.'],
+  ['Rotation Speed / Rise Speed / Chaos Factor','Movement and chaos parameters.']]}]},
+ {name:'N3: Hyper Explosion',short:'Animation that explosively scatters outward.',tags:['anim'],sections:[{title:null,feats:[
+  ['Launch N3','Start N3.'],
+  ['Player Follow','Whether to follow the player.'],
+  ['Explosion Radius / Object Count','Shape parameters.'],
+  ['Cycle Speed / Randomness','Movement and randomness parameters.']]}]},
+ {name:'Info & Support',short:'Tab for version information and support.',tags:[],sections:[]}
+],
+vn:[
+ {name:'Me(=^・^=)',short:'Tab tổng hợp các tính năng di chuyển và tầm nhìn của bản thân.',tags:[],sections:[{title:null,feats:[
+  ['Nhảy vô hạn','Có thể nhảy bất kỳ lần nào kể cả trên không trung.'],
+  ['No-Clip','Di chuyển xuyên qua tường và đối tượng.'],
+  ['TPWalk','Di chuyển tốc độ cao từ 16–500. WASD để chỉ hướng.'],
+  ['Tốc độ TPWalk','Thanh trượt điều chỉnh tốc độ TPWalk.'],
+  ['ESP','Hiển thị tên và khoảng cách của người chơi khác, kể cả qua tường.'],
+  ['Góc nhìn thứ ba','Chuyển camera sang chế độ nhìn thứ ba.'],
+  ['FOV','Điều chỉnh góc nhìn từ -5 đến 180.'],
+  ['Đặt lại FOV','Đặt lại FOV về giá trị mặc định 70.'],
+  ['Dừng tất cả tính năng','Dừng tất cả các tính năng đang hoạt động cùng lúc.']]}]},
+ {name:'GUI',short:'Tab để khởi động GUI hỗ trợ.',tags:[],sections:[{title:null,feats:[
+  ['Fixed GUI','GUI để cố định/giải phóng đối tượng bằng tâm ngắm. Chuyển đổi bằng nút MENU.'],
+  ['TTP GUI','GUI teleport & cố định bên ngoài. Khởi động bằng phím gạch chéo ngược.'],
+  ['SaluraHUB-keyboard.GUI','Tải GUI bàn phím bên ngoài.']]}]},
+ {name:'Chống',short:'Tab tổng hợp các tính năng bảo vệ khỏi tấn công của người chơi khác.',tags:[],sections:[{title:null,feats:[
+  ['Thoát khi bị túm (Đơn giản)','Thoát khi bị túm bằng cách spam Struggle và thả neo.'],
+  ['Anti Grab V2 (Nâng cao)','Thoát bằng cách tắt va chạm, hủy Ragdoll và khóa vật lý.'],
+  ['Anti Gucci','Ngăn bị bắt cóc bằng máy kéo. Tự động tạo máy kéo và ném lên trời.'],
+  ['Anti Void','Ngăn rơi xuống vực. Vô hiệu hóa FallenPartsDestroyHeight.']]}]},
+ {name:'Hệ thống tấn công',short:'Tab tổng hợp tính năng tấn công người chơi khác. Tuyệt đối cấm lạm dụng.',tags:['danger'],sections:[
+  {title:'【Kick V1 (Túm Blob)】',feats:[
+   ['Người chơi mục tiêu','Dropdown để chọn mục tiêu tấn công.'],
+   ['Cập nhật danh sách','Làm mới danh sách người chơi.'],
+   ['Loop Kick V1','Tự động liên tục kick mục tiêu khi ngồi trên blob.']]},
+  {title:'【Kick V2 (Quỹ đạo & Túm)】',feats:[
+   ['Chọn mục tiêu','Chọn mục tiêu tấn công.'],
+   ['Drift Kick V2','Kick trong khi quay quanh mục tiêu theo quỹ đạo tròn.']]},
+  {title:'【Hất tung】',feats:[
+   ['Hất tung!','Thổi bay người chơi được chọn bằng blob.'],
+   ['Nhảy vô hạn / Góc nhìn thứ ba','Các tính năng hỗ trợ để hất tung.']]},
+  {title:'【Kick tất cả】',feats:[
+   ['Kick tất cả','Kick tất cả người chơi trong server cùng lúc.'],
+   ['Loại trừ bạn bè','Tùy chọn loại trừ bạn bè khỏi việc kick.']]},
+  {title:'【Sphere Orbit Kick V1】',feats:[
+   ['Thực thi (Kick quỹ đạo cầu)','Kick trong khi xoay nhanh theo quỹ đạo 3D quanh mục tiêu.'],
+   ['Bán kính / Tốc độ / Độ cao','Điều chỉnh các thông số quỹ đạo.'],
+   ['Độ nghiêng / Độ phức tạp / Hiệu ứng','Điều chỉnh hình dạng và hiệu ứng quỹ đạo.']]}]},
+ {name:'Chiếm tàu hỏa',short:'Tab các tính năng tự động hóa liên quan đến tàu hỏa.',tags:[],sections:[{title:null,feats:[
+  ['Ngồi vào chỗ trống ngẫu nhiên','Tự động tìm và ngồi vào chỗ trống.'],
+  ['Bật tự động hóa','Tự động điều khiển ocarina và mayonnaise khi lên/xuống tàu.'],
+  ['Khởi động vFly GUI','Tải GUI bay bên ngoài. Bay bằng WASD+QE.']]}]},
+ {name:'Phát nhạc',short:'Tab để tự động chơi đàn piano.',tags:[],sections:[
+  {title:'【Điều khiển Piano】',feats:[
+   ['Bật tính năng Piano','Phát hiện MusicKeyboard và bật tự động chơi.'],
+   ['Theo dõi người chơi','Cho piano theo dõi người chơi.']]},
+  {title:'【Phát bài hát (Nhập văn bản)】',feats:[
+   ['Nhập dữ liệu JSON','Ô nhập liệu cho dữ liệu bài hát dạng JSON.'],
+   ['Phát / Dừng','Bắt đầu hoặc dừng tự động chơi.']]},
+  {title:'【Bộ chuyển đổi MIDI→JSON】',feats:[
+   ['Mở bộ chuyển đổi (Trình duyệt)','Mở trang web chuyển đổi MIDI sang JSON.'],
+   ['Sao chép URL','Sao chép URL bộ chuyển đổi vào clipboard.']]}]},
+ {name:'SRBM',short:'Tab để điều khiển đồ chơi của bạn.',tags:[],sections:[
+  {title:'【Hiển thị HUD】',feats:[['HUD (Hình ảnh + Tọa độ)','Hiển thị hình ảnh và tọa độ ở giữa màn hình. Chuyển đổi bằng phím P.']]},
+  {title:'【Khác】',feats:[
+   ['ICBM','Điều khiển tên lửa bom theo đường đạn đạo.'],
+   ['Góc nhìn thứ ba','Chuyển sang góc nhìn thứ ba.'],
+   ['Điều khiển trực thăng','Điều khiển trực thăng bằng WASD+ZX.'],
+   ['Chế độ đồ chơi','Chọn đồ chơi để điều khiển.']]}]},
+ {name:'Gói tài nguyên',short:'Tab thay thế giao diện của TractorGreen bằng mô hình khác.',tags:[],sections:[{title:null,feats:[
+  ['Gói tài nguyên V1','Thay thế mô hình TractorGreen. Giữ nguyên chức năng gốc.']]}]},
+ {name:'Script Hub',short:'Tab tải script bên ngoài. Không đảm bảo hoạt động.',tags:[],sections:[{title:null,feats:[
+  ['Shader','Áp dụng hiệu ứng shader cho màn hình.'],
+  ['Đổi bầu trời','Thay đổi Skybox.'],
+  ['Tetris','Khởi động mini-game Tetris.'],
+  ['vFly của Kurosuke','Khởi động script bay.'],
+  ['HokutoHUB','Tải script HUB bên ngoài.'],
+  ['Dịch UI sang tiếng Nhật','Tải script dịch UI sang tiếng Nhật.'],
+  ['FTAP TP','Tải script teleport.']]}]},
+ {name:'Cài đặt đối tượng',short:'Tab chọn từ 28 loại đối tượng.',tags:[],sections:[{title:null,feats:[
+  ['28 loại ID đối tượng','Chọn từ 28 loại gồm FireworkSparkler, MusicKeyboard, TractorGreen,... Các tính năng hoạt động tự động khởi động lại khi chọn.']]}]},
+ {name:'Phá vỡ rào cản',short:'Tính năng phá vỡ rào cản tại tọa độ cụ thể.',tags:[],sections:[{title:null,feats:[
+  ['Barrier Break (BETA)','Di chuyển đến tọa độ cụ thể và sử dụng ocarina để phá vỡ rào cản.']]}]},
+ {name:'Lông vũ [Cánh]',short:'Hoạt hình triển khai lông vũ ở lưng.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động lông vũ','Triển khai lông vũ.'],
+  ['Số lượng tối đa','Số lượng lông vũ tối đa.'],
+  ['Khoảng cách / Độ cao / Khoảng cách lưng','Các thông số bố trí lông vũ.'],
+  ['Góc nghiêng / Tốc độ lên xuống / Biên độ','Các thông số chuyển động lông vũ.']]}]},
+ {name:'Cánh V2',short:'Hoạt hình tạo cánh bằng FireworkSparkler.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động Cánh V2','Bắt đầu Cánh V2.'],
+  ['Chiều cao cánh / Độ mở rộng cánh','Điều chỉnh vị trí và độ mở rộng cánh.'],
+  ['Hình dạng / Tốc độ / Phạm vi vỗ cánh','Các thông số chuyển động vỗ cánh.'],
+  ['Số đối tượng mỗi cánh / Độ trễ chuỗi','Cấu trúc cánh và độ trễ chuyển động.']]}]},
+ {name:'Saturn Sparkler',short:'Hoạt hình tạo hình dạng giống sao Thổ.',tags:['anim'],sections:[{title:null,feats:[
+  ['Bật','Khởi động Saturn Sparkler.'],
+  ['Chế độ bố trí','Chọn Saturn (cầu+vòng), Cầu (3D), Vòng (phẳng), Plot (mặt đất).'],
+  ['Chiều cao cơ bản / Tốc độ theo dõi','Cài đặt chiều cao và tốc độ theo dõi.'],
+  ['Bán kính vòng / Tốc độ vòng','Thông số vòng.'],
+  ['Bán kính cầu / Tốc độ cầu / Số lớp cầu','Thông số cầu.'],
+  ['Bán kính Plot / Chiều cao nổi','Thông số chế độ Plot.'],
+  ['Quét lại','Phát hiện lại các đối tượng.']]}]},
+ {name:'Vòng ma thuật',short:'Hoạt hình triển khai vòng ma thuật.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động vòng ma thuật','Bắt đầu vòng ma thuật.'],
+  ['Loại biểu tượng','Chọn Ring, Circle, Hexagram.'],
+  ['Hiệu ứng phát sáng','Bật/tắt hiệu ứng phát sáng.'],
+  ['Chiều cao / Đường kính / Số đối tượng / Tốc độ quay','Thông số kích thước và chuyển động.']]}]},
+ {name:'Tornado Toy MOD',short:'Hoạt hình bố trí đối tượng theo hình lốc xoáy.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động Tornado Toy MOD','Bắt đầu lốc xoáy.'],
+  ['Theo dõi người chơi / Hiệu ứng xoáy','Bật/tắt theo dõi và hiệu ứng xoáy.'],
+  ['Bán kính / Chiều cao / Tổng chiều cao / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Xoắn ốc / Sóng / Biên độ sóng','Thông số chuyển động.'],
+  ['Quét lại đối tượng','Phát hiện lại các đối tượng.']]}]},
+ {name:'Vòng quay',short:'Hoạt hình bố trí đối tượng như vòng quay.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động vòng quay','Bắt đầu vòng quay.'],
+  ['Theo dõi / Vòng dọc / Hướng cố định','Cài đặt bố trí và theo dõi.'],
+  ['Góc Yaw / Pitch / Roll cố định','Thông số góc hướng cố định.'],
+  ['Bán kính / Chiều cao tâm / Số đối tượng / Tốc độ quay','Thông số kích thước và chuyển động.']]}]},
+ {name:'Trái tim',short:'Hoạt hình vẽ hình trái tim nằm ngang (mặt phẳng XZ).',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động trái tim','Bắt đầu trái tim.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước / Chiều cao / Số đối tượng','Kích thước và cấu trúc.'],
+  ['Tốc độ quay / Tốc độ đập / Biên độ đập','Thông số chuyển động.']]}]},
+ {name:'Trái tim dọc',short:'Hoạt hình vẽ hình trái tim dọc (mặt phẳng XY).',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động trái tim dọc','Bắt đầu trái tim dọc.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước / Chiều cao / Số đối tượng','Kích thước và cấu trúc.'],
+  ['Tốc độ quay / Tốc độ đập / Biên độ đập','Thông số chuyển động.']]}]},
+ {name:'Trái tim lớn',short:'Hoạt hình vẽ trái tim lớn nằm ngang.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động trái tim lớn','Bắt đầu trái tim lớn.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước cơ bản / Tỷ lệ / Kéo dài dọc','Thông số hình dạng.'],
+  ['Chiều cao / Số đối tượng','Chiều cao và cấu trúc.'],
+  ['Tốc độ quay / Tốc độ đập / Biên độ đập','Thông số chuyển động.']]}]},
+ {name:'Trái tim lớn dọc',short:'Hoạt hình vẽ trái tim lớn dọc.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động trái tim lớn dọc','Bắt đầu trái tim lớn dọc.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước cơ bản / Tỷ lệ / Chiều cao / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Tốc độ đập / Biên độ đập','Thông số chuyển động.']]}]},
+ {name:'卍',short:'Hoạt hình vẽ ký hiệu 卍.',tags:['anim'],sections:[{title:null,feats:[
+  ['卍 (Cả hai chiều)','Vẽ 卍 bằng hai sparkler.'],
+  ['Kích thước / Tốc độ vẽ','Kích thước và tốc độ vẽ.'],
+  ['Quét lại Sparkler','Phát hiện lại sparkler.']]}]},
+ {name:'Hình cầu',short:'Hoạt hình vẽ hình cầu.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động hình cầu','Bắt đầu hình cầu.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Bán kính / Đường vĩ tuyến / Đường kinh tuyến / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ xoay ngang / dọc / Tốc độ đập / Biên độ đập','Thông số chuyển động.']]}]},
+ {name:'Ngôi sao David',short:'Hoạt hình vẽ ngôi sao David.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động ngôi sao David','Bắt đầu ngôi sao David.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước / Chiều cao cơ bản / Chiều cao tam giác / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Tốc độ đập','Thông số chuyển động.']]}]},
+ {name:'Sao',short:'Hoạt hình vẽ ngôi sao.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động ngôi sao','Bắt đầu ngôi sao.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Bán kính ngoài / Bán kính trong / Chiều cao / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Tốc độ lấp lánh','Thông số chuyển động.']]}]},
+ {name:'Sao 2',short:'Hoạt hình vẽ ngôi sao có tia sáng.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động Sao 2','Bắt đầu Sao 2.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Kích thước / Độ dài tia / Chiều cao / Số tia / Số đối tượng','Thông số hình dạng.'],
+  ['Quay / Đập / Biên độ / Tốc độ răng cưa / Lượng răng cưa','Thông số chuyển động.']]}]},
+ {name:'N1: Vòng hỗn loạn',short:'Hoạt hình chuyển động tròn hỗn loạn.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động N1','Bắt đầu N1.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Bán kính / Chiều cao / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Tốc độ đập / Lượng đập','Thông số chuyển động.']]}]},
+ {name:'N2: Xoắn ốc lốc xoáy',short:'Hoạt hình bay lên theo xoắn ốc lốc xoáy.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động N2','Bắt đầu N2.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Bán kính / Chiều cao tối đa / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ quay / Tốc độ dâng lên / Yếu tố hỗn loạn','Thông số chuyển động.']]}]},
+ {name:'N3: Vụ nổ siêu lớn',short:'Hoạt hình phân tán bùng nổ.',tags:['anim'],sections:[{title:null,feats:[
+  ['Khởi động N3','Bắt đầu N3.'],
+  ['Theo dõi người chơi','Có theo dõi người chơi hay không.'],
+  ['Bán kính nổ / Số đối tượng','Thông số hình dạng.'],
+  ['Tốc độ chu kỳ / Tính ngẫu nhiên','Thông số chuyển động.']]}]},
+ {name:'Thông tin và Hỗ trợ',short:'Tab để xem thông tin phiên bản và hỗ trợ.',tags:[],sections:[]}
+],
+ru:[
+ {name:'Me(=^・^=)',short:'Вкладка с функциями перемещения и обзора персонажа.',tags:[],sections:[{title:null,feats:[
+  ['Бесконечный прыжок','Прыгать любое количество раз, даже в воздухе.'],
+  ['Без столкновений','Проходить сквозь стены и объекты.'],
+  ['TPWalk','Быстрое перемещение со скоростью 16–500. WASD для направления.'],
+  ['Скорость TPWalk','Ползунок для настройки скорости TPWalk.'],
+  ['ESP','Отображает имена и расстояние до других игроков, даже через стены.'],
+  ['Вид от третьего лица','Переключить камеру в режим третьего лица.'],
+  ['FOV','Регулировка поля зрения от -5 до 180.'],
+  ['Сброс FOV','Сброс FOV до значения по умолчанию 70.'],
+  ['Остановить все функции','Остановить все активные функции одновременно.']]}]},
+ {name:'GUI',short:'Вкладка для запуска вспомогательных GUI.',tags:[],sections:[{title:null,feats:[
+  ['Фиксация GUI','GUI для фиксации объектов по прицелу. Переключение кнопкой MENU.'],
+  ['TTP GUI','Внешний GUI телепорта и фиксации. Запуск клавишей обратной косой черты.'],
+  ['SaluraHUB-keyboard.GUI','Загружает внешний GUI клавиатуры.']]}]},
+ {name:'Анти',short:'Вкладка с защитными функциями от атак других игроков.',tags:[],sections:[{title:null,feats:[
+  ['Побег при захвате (Простой)','Побег из захвата через спам Struggle и якорение.'],
+  ['Anti Grab V2 (Улучшенный)','Побег через отключение коллизии, отмену Ragdoll и физическую блокировку.'],
+  ['Anti Gucci','Защита от похищения трактором. Автоматически создаёт трактор и отправляет его в небо.'],
+  ['Anti Void','Защита от падения в пустоту. Отключает FallenPartsDestroyHeight.']]}]},
+ {name:'Система атаки',short:'Вкладка с функциями атаки других игроков. Злоупотребление категорически запрещено.',tags:['danger'],sections:[
+  {title:'【Кик V1 (Захват Blob)】',feats:[
+   ['Цель','Выпадающий список для выбора цели атаки.'],
+   ['Обновить список','Обновить список игроков.'],
+   ['Цикличный кик V1','Автоматически непрерывно кикает цель, сидя на блобе.']]},
+  {title:'【Кик V2 (Орбита и захват)】',feats:[
+   ['Выбрать цель','Выбрать цель атаки.'],
+   ['Drift Kick V2','Кик при вращении по круговой орбите вокруг цели.']]},
+  {title:'【Отбросить】',feats:[
+   ['Отбросить!','Отбросить выбранного игрока с помощью блоба.'],
+   ['Бесконечный прыжок / Вид от третьего лица','Вспомогательные функции.']]},
+  {title:'【Кик всех】',feats:[
+   ['Кик всех','Кикнуть всех игроков на сервере одновременно.'],
+   ['Исключить друзей','Опция исключения друзей из кика.']]},
+  {title:'【Sphere Orbit Kick V1】',feats:[
+   ['Выполнить (Кик сферической орбиты)','Кик при быстром вращении по 3D сферической орбите вокруг цели.'],
+   ['Радиус / Скорость / Высота','Параметры орбиты.'],
+   ['Наклон / Сложность / Эффект','Параметры формы и эффектов.']]}]},
+ {name:'Захват поезда',short:'Вкладка с функциями автоматизации поезда.',tags:[],sections:[{title:null,feats:[
+  ['Сесть на случайное свободное место','Автоматически найти и занять свободное место.'],
+  ['Включить автоматизацию','Автоматически управлять окариной и майонезом при посадке/высадке.'],
+  ['Запустить vFly GUI','Загрузить внешний GUI полёта. Летать на WASD+QE.']]}]},
+ {name:'Музыкальный плеер',short:'Вкладка для автоматической игры на пианино.',tags:[],sections:[
+  {title:'【Управление пианино】',feats:[
+   ['Включить пианино','Обнаружить MusicKeyboard и включить автоматическую игру.'],
+   ['Следовать за игроком','Заставить пианино следовать за игроком.']]},
+  {title:'【Воспроизведение (Ввод текста)】',feats:[
+   ['Ввести данные JSON','Текстовое поле для ввода данных песни в формате JSON.'],
+   ['Воспроизвести / Остановить','Начать или остановить автоматическую игру.']]},
+  {title:'【Конвертер MIDI→JSON】',feats:[
+   ['Открыть конвертер (Браузер)','Открыть веб-страницу для конвертации MIDI в JSON.'],
+   ['Скопировать URL','Скопировать URL конвертера в буфер обмена.']]}]},
+ {name:'SRBM',short:'Вкладка для управления своими игрушками.',tags:[],sections:[
+  {title:'【Отображение HUD】',feats:[['HUD (Изображение + Координаты)','Отображает изображение и координаты по центру экрана. Переключение клавишей P.']]},
+  {title:'【Прочее】',feats:[
+   ['ICBM','Управление ракетой по баллистической траектории.'],
+   ['Вид от третьего лица','Переключиться на вид от третьего лица.'],
+   ['Управление вертолётом','Управление вертолётом. WASD+ZX.'],
+   ['Режим игрушки','Выбрать игрушку для управления.']]}]},
+ {name:'Ресурс-пак',short:'Вкладка для замены внешнего вида TractorGreen другой моделью.',tags:[],sections:[{title:null,feats:[
+  ['Ресурс-пак V1','Заменить модель TractorGreen другой. Исходные функции сохраняются.']]}]},
+ {name:'Хаб скриптов',short:'Вкладка для загрузки внешних скриптов. Без гарантии работы.',tags:[],sections:[{title:null,feats:[
+  ['Шейдер','Применить эффект шейдера к экрану.'],
+  ['Сменить небо','Изменить Skybox.'],
+  ['Тетрис','Запустить мини-игру Тетрис.'],
+  ['vFly Kurosuke','Запустить скрипт полёта.'],
+  ['HokutoHUB','Загрузить внешний HUB скрипт.'],
+  ['Перевести UI на японский','Загрузить скрипт перевода UI на японский язык.'],
+  ['FTAP TP','Загрузить скрипт телепортации.']]}]},
+ {name:'Настройки объектов',short:'Вкладка для выбора из 28 типов объектов.',tags:[],sections:[{title:null,feats:[
+  ['28 типов ID объектов','Выбор из 28 типов включая FireworkSparkler, MusicKeyboard, TractorGreen. Активные функции автоматически перезапускаются при выборе.']]}]},
+ {name:'Разрушение барьера',short:'Функция разрушения барьеров в определённых координатах.',tags:[],sections:[{title:null,feats:[
+  ['Barrier Break (BETA)','Переместитесь к определённым координатам и используйте окарину для разрушения барьера.']]}]},
+ {name:'Перья [Крылья]',short:'Анимация развёртывания перьев на спине.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить перья','Развернуть перья.'],
+  ['Макс. кол-во объектов','Максимальное количество перьев.'],
+  ['Интервал / Высота / Расстояние от спины','Параметры размещения перьев.'],
+  ['Угол наклона / Скорость / Амплитуда','Параметры движения перьев.']]}]},
+ {name:'Крылья V2',short:'Анимация формирования крыльев с FireworkSparkler.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить Крылья V2','Запустить Крылья V2.'],
+  ['Высота крыльев / Размах крыльев','Регулировка позиции и размаха крыльев.'],
+  ['Форма / Скорость / Диапазон взмахов','Параметры взмахов крыльев.'],
+  ['Объектов на крыло / Задержка цепи','Структура крыльев и задержка движения.']]}]},
+ {name:'Saturn Sparkler',short:'Анимация создания форм, похожих на Сатурн.',tags:['anim'],sections:[{title:null,feats:[
+  ['Включить','Запустить Saturn Sparkler.'],
+  ['Режим расположения','Выбрать Сатурн (сфера+кольцо), Сфера (3D), Кольцо (плоское), Plot (земля).'],
+  ['Базовая высота / Скорость следования','Параметры высоты и следования.'],
+  ['Радиус кольца / Скорость кольца','Параметры кольца.'],
+  ['Радиус сферы / Скорость сферы / Слои сферы','Параметры сферы.'],
+  ['Радиус Plot / Высота парения','Параметры режима Plot.'],
+  ['Пересканировать','Повторно обнаружить объекты.']]}]},
+ {name:'Магический круг',short:'Анимация развёртывания магического круга.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить магический круг','Запустить магический круг.'],
+  ['Тип символа','Выбрать Ring, Circle, Hexagram.'],
+  ['Эффект свечения','Вкл/выкл эффект свечения.'],
+  ['Высота / Диаметр / Кол-во объектов / Скорость вращения','Параметры размера и движения.']]}]},
+ {name:'Торнадо Toy MOD',short:'Анимация расположения объектов в форме торнадо.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить торнадо','Запустить торнадо.'],
+  ['Следовать / Эффект вихря','Вкл/выкл следование и вихревой эффект.'],
+  ['Базовый радиус / Высота / Общая высота / Кол-во','Параметры формы.'],
+  ['Скорость вращения / Спираль / Волна / Амплитуда волны','Параметры движения.'],
+  ['Пересканировать объекты','Повторно обнаружить объекты.']]}]},
+ {name:'Колесо обозрения',short:'Анимация расположения объектов как колесо обозрения.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить колесо обозрения','Запустить колесо обозрения.'],
+  ['Следовать / Вертикальный круг / Фиксированное направление','Настройки расположения и следования.'],
+  ['Угол Yaw / Pitch / Roll','Параметры фиксированного направления.'],
+  ['Радиус / Центральная высота / Кол-во объектов / Скорость вращения','Параметры размера и движения.']]}]},
+ {name:'Сердце',short:'Анимация рисования горизонтального сердца (плоскость XZ).',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить сердце','Запустить сердце.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Размер / Высота / Кол-во объектов','Размер и структура.'],
+  ['Скорость вращения / Пульсация / Амплитуда пульсации','Параметры движения.']]}]},
+ {name:'Вертикальное сердце',short:'Анимация рисования вертикального сердца (плоскость XY).',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить вертикальное сердце','Запустить вертикальное сердце.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Размер / Высота / Кол-во объектов','Размер и структура.'],
+  ['Скорость вращения / Пульсация / Амплитуда пульсации','Параметры движения.']]}]},
+ {name:'Большое сердце',short:'Анимация рисования большого горизонтального сердца.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить большое сердце','Запустить большое сердце.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Базовый размер / Масштаб / Вертикальное растяжение','Параметры формы.'],
+  ['Высота / Кол-во объектов','Высота и структура.'],
+  ['Скорость вращения / Пульсация / Амплитуда','Параметры движения.']]}]},
+ {name:'Большое вертикальное сердце',short:'Анимация рисования большого вертикального сердца.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить большое вертикальное сердце','Запустить большое вертикальное сердце.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Базовый размер / Масштаб / Высота / Кол-во объектов','Параметры формы.'],
+  ['Скорость вращения / Пульсация / Амплитуда','Параметры движения.']]}]},
+ {name:'卍',short:'Анимация рисования символа 卍.',tags:['anim'],sections:[{title:null,feats:[
+  ['卍 (Оба направления)','Нарисовать 卍 двумя спаркерами.'],
+  ['Размер / Скорость рисования','Размер и скорость рисования.'],
+  ['Пересканировать спаркеры','Повторно обнаружить спаркеры.']]}]},
+ {name:'Сфера',short:'Анимация рисования сферы.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить сферу','Запустить сферу.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Радиус / Широты / Долготы / Кол-во объектов','Параметры формы.'],
+  ['Горизонт. / Верт. вращение / Пульсация / Амплитуда','Параметры движения.']]}]},
+ {name:'Звезда Давида',short:'Анимация рисования Звезды Давида.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить Звезду Давида','Запустить Звезду Давида.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Размер / Базовая высота / Высота треугольника / Кол-во','Параметры формы.'],
+  ['Скорость вращения / Скорость пульсации','Параметры движения.']]}]},
+ {name:'Звезда',short:'Анимация рисования звезды.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить звезду','Запустить звезду.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Внешний радиус / Внутренний радиус / Высота / Кол-во','Параметры формы.'],
+  ['Скорость вращения / Скорость мерцания','Параметры движения.']]}]},
+ {name:'Звезда 2',short:'Анимация рисования звезды с лучами света.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить Звезду 2','Запустить Звезду 2.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Базовый размер / Длина лучей / Высота / Кол-во лучей / Кол-во объектов','Параметры формы.'],
+  ['Вращение / Пульсация / Амплитуда / Зубцы / Кол-во зубцов','Параметры движения.']]}]},
+ {name:'N1: Хаотический круг',short:'Анимация хаотического кругового движения.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить N1','Запустить N1.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Радиус / Базовая высота / Кол-во объектов','Параметры формы.'],
+  ['Скорость вращения / Пульсация / Интенсивность','Параметры движения.']]}]},
+ {name:'N2: Торнадо-спираль',short:'Анимация спирального подъёма в форме торнадо.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить N2','Запустить N2.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Радиус / Макс. высота / Кол-во объектов','Параметры формы.'],
+  ['Скорость вращения / Скорость подъёма / Хаос-фактор','Параметры движения.']]}]},
+ {name:'N3: Гиперзаряд',short:'Анимация взрывного рассеивания.',tags:['anim'],sections:[{title:null,feats:[
+  ['Запустить N3','Запустить N3.'],
+  ['Следовать за игроком','Следовать за игроком или нет.'],
+  ['Радиус взрыва / Кол-во объектов','Параметры формы.'],
+  ['Скорость цикла / Случайность','Параметры движения.']]}]},
+ {name:'Информация и поддержка',short:'Вкладка с информацией о версии и поддержке.',tags:[],sections:[]}
+],
+th:[
+ {name:'Me(=^・^=)',short:'แท็บรวมฟีเจอร์การเคลื่อนที่และการมองเห็นของตัวเอง',tags:[],sections:[{title:null,feats:[
+  ['กระโดดไม่จำกัด','กระโดดได้ไม่จำกัดครั้งแม้อยู่กลางอากาศ'],
+  ['No-Clip','เดินทะลุกำแพงและออบเจ็กต์ได้'],
+  ['TPWalk','เคลื่อนที่ด้วยความเร็วสูง 16–500 WASD เพื่อกำหนดทิศทาง'],
+  ['ความเร็ว TPWalk','แถบเลื่อนปรับความเร็ว TPWalk'],
+  ['ESP','แสดงชื่อและระยะห่างของผู้เล่นอื่น แม้อยู่หลังกำแพง'],
+  ['มุมมองบุคคลที่สาม','สลับกล้องเป็นโหมดบุคคลที่สาม'],
+  ['FOV','ปรับมุมมองภาพจาก -5 ถึง 180'],
+  ['รีเซ็ต FOV','รีเซ็ต FOV เป็นค่าเริ่มต้น 70'],
+  ['หยุดทุกฟีเจอร์','หยุดทุกฟีเจอร์ที่กำลังทำงานพร้อมกัน']]}]},
+ {name:'GUI',short:'แท็บสำหรับเปิด GUI เสริม',tags:[],sections:[{title:null,feats:[
+  ['Fixed GUI','GUI สำหรับตรึง/ปลดออบเจ็กต์โดยใช้เป้าเล็งกลาง สลับด้วยปุ่ม MENU'],
+  ['TTP GUI','GUI เทเลพอร์ตและตรึงภายนอก เปิดด้วยปุ่มแบ็กสแลช'],
+  ['SaluraHUB-keyboard.GUI','โหลด GUI แป้นพิมพ์ภายนอก']]}]},
+ {name:'ป้องกัน',short:'แท็บรวมฟีเจอร์ป้องกันการโจมตีจากผู้เล่นอื่น',tags:[],sections:[{title:null,feats:[
+  ['หนีเมื่อถูกจับ (แบบง่าย)','หนีจากการถูกจับด้วยการกด Struggle ซ้ำและทอดสมอ'],
+  ['Anti Grab V2 (เสริมพลัง)','หนีจากการถูกจับด้วยการปิดการชน ยกเลิก Ragdoll และล็อกทางฟิสิกส์'],
+  ['Anti Gucci','ป้องกันการลักพาตัวด้วยรถแทรกเตอร์ สร้างรถแทรกเตอร์อัตโนมัติและส่งขึ้นฟ้า'],
+  ['Anti Void','ป้องกันการตกลงสู่วอยด์ ปิดใช้งาน FallenPartsDestroyHeight']]}]},
+ {name:'ระบบการโจมตี',short:'แท็บรวมฟีเจอร์โจมตีผู้เล่นอื่น ห้ามใช้ในทางที่ผิดโดยเด็ดขาด',tags:['danger'],sections:[
+  {title:'【Kick V1 (จับ Blob)】',feats:[
+   ['ผู้เล่นเป้าหมาย','ดรอปดาวน์เพื่อเลือกเป้าหมายโจมตี'],
+   ['อัปเดตรายชื่อ','รีเฟรชรายชื่อผู้เล่น'],
+   ['Loop Kick V1','เตะเป้าหมายซ้ำๆ อัตโนมัติขณะนั่งบน blob']]},
+  {title:'【Kick V2 (วงโคจรและจับ)】',feats:[
+   ['เลือกเป้าหมาย','เลือกเป้าหมายโจมตี'],
+   ['Drift Kick V2','เตะขณะหมุนรอบเป้าหมายตามวงโคจรวงกลม']]},
+  {title:'【กระแทกกระเด็น】',feats:[
+   ['กระแทกกระเด็น!','กระแทกผู้เล่นที่เลือกกระเด็นออกไปด้วย blob'],
+   ['กระโดดไม่จำกัด / มุมมองบุคคลที่สาม','ฟีเจอร์เสริมสำหรับการกระแทก']]},
+  {title:'【เตะทุกคน】',feats:[
+   ['เตะทุกคน','เตะผู้เล่นทุกคนในเซิร์ฟเวอร์พร้อมกัน'],
+   ['ยกเว้นเพื่อน','ตัวเลือกยกเว้นเพื่อนจากการเตะ']]},
+  {title:'【Sphere Orbit Kick V1】',feats:[
+   ['ดำเนินการ (เตะวงโคจรทรงกลม)','เตะขณะหมุนรอบเป้าหมายด้วยวงโคจร 3D ทรงกลมความเร็วสูง'],
+   ['รัศมี / ความเร็ว / ความสูง','ปรับพารามิเตอร์วงโคจร'],
+   ['การเอียง / ความซับซ้อน / เอฟเฟกต์','ปรับรูปร่างและเอฟเฟกต์วงโคจร']]}]},
+ {name:'ยึดรถไฟ',short:'แท็บฟีเจอร์อัตโนมัติเกี่ยวกับรถไฟ',tags:[],sections:[{title:null,feats:[
+  ['นั่งที่ว่างแบบสุ่ม','ค้นหาและนั่งที่ว่างโดยอัตโนมัติ'],
+  ['เปิดใช้งานอัตโนมัติ','ควบคุม ocarina และมายองเนสอัตโนมัติเมื่อขึ้น/ลงรถ'],
+  ['เปิด vFly GUI','โหลด GUI บินภายนอก บินด้วย WASD+QE']]}]},
+ {name:'เล่นเพลง',short:'แท็บสำหรับเล่นเปียโนอัตโนมัติ',tags:[],sections:[
+  {title:'【ควบคุมเปียโน】',feats:[
+   ['เปิดใช้งานเปียโน','ตรวจจับ MusicKeyboard และเปิดใช้งานการเล่นอัตโนมัติ'],
+   ['ติดตามผู้เล่น','ให้เปียโนติดตามผู้เล่น']]},
+  {title:'【เล่นเพลง (ป้อนข้อความ)】',feats:[
+   ['ป้อนข้อมูล JSON','กล่องข้อความสำหรับป้อนข้อมูลเพลงในรูปแบบ JSON'],
+   ['เล่น / หยุด','เริ่มหรือหยุดการเล่นอัตโนมัติ']]},
+  {title:'【ตัวแปลง MIDI→JSON】',feats:[
+   ['เปิดตัวแปลง (เบราว์เซอร์)','เปิดหน้าเว็บสำหรับแปลงไฟล์ MIDI เป็น JSON'],
+   ['คัดลอก URL','คัดลอก URL ของตัวแปลงไปยังคลิปบอร์ด']]}]},
+ {name:'SRBM',short:'แท็บสำหรับควบคุมของเล่นของตัวเอง',tags:[],sections:[
+  {title:'【แสดง HUD】',feats:[['HUD (ภาพ + พิกัด)','แสดงภาพและพิกัดที่กลางหน้าจอ สลับด้วยปุ่ม P']]},
+  {title:'【อื่นๆ】',feats:[
+   ['ICBM','ควบคุมขีปนาวุธตามวิถีโคจร'],
+   ['มุมมองบุคคลที่สาม','สลับเป็นมุมมองบุคคลที่สาม'],
+   ['ควบคุมเฮลิคอปเตอร์','ควบคุมเฮลิคอปเตอร์ด้วย WASD+ZX'],
+   ['โหมดของเล่น','เลือกของเล่นที่จะควบคุม']]}]},
+ {name:'แพ็คทรัพยากร',short:'แท็บสำหรับเปลี่ยนรูปลักษณ์ของ TractorGreen',tags:[],sections:[{title:null,feats:[
+  ['แพ็คทรัพยากร V1','เปลี่ยนโมเดล TractorGreen เป็นโมเดลอื่น ฟังก์ชันเดิมยังคงอยู่']]}]},
+ {name:'Script Hub',short:'แท็บสำหรับโหลดสคริปต์ภายนอก ไม่รับประกันการทำงาน',tags:[],sections:[{title:null,feats:[
+  ['เชดเดอร์','ใช้เอฟเฟกต์เชดเดอร์กับหน้าจอ'],
+  ['เปลี่ยนท้องฟ้า','เปลี่ยน Skybox เป็นอีกแบบ'],
+  ['เตทริส','เปิดเกมมินิเกมเตทริส'],
+  ['vFly ของ Kurosuke','เปิดสคริปต์บิน'],
+  ['HokutoHUB','โหลดสคริปต์ HUB ภายนอก'],
+  ['แปล UI เป็นภาษาญี่ปุ่น','โหลดสคริปต์แปล UI เป็นภาษาญี่ปุ่น'],
+  ['FTAP TP','โหลดสคริปต์เทเลพอร์ต']]}]},
+ {name:'การตั้งค่าออบเจ็กต์',short:'แท็บสำหรับเลือกจาก 28 ประเภทออบเจ็กต์',tags:[],sections:[{title:null,feats:[
+  ['ID ออบเจ็กต์ 28 ประเภท','เลือกจาก 28 ประเภทรวมถึง FireworkSparkler, MusicKeyboard, TractorGreen ฟีเจอร์ที่ใช้งานอยู่จะรีสตาร์ทอัตโนมัติ']]}]},
+ {name:'ทำลายอุปสรรค',short:'ฟีเจอร์ทำลายอุปสรรคที่พิกัดเฉพาะ',tags:[],sections:[{title:null,feats:[
+  ['Barrier Break (BETA)','เคลื่อนที่ไปยังพิกัดเฉพาะและใช้ ocarina เพื่อทำลายอุปสรรค']]}]},
+ {name:'ขนนก [ปีก]',short:'แอนิเมชั่นกางขนนกที่หลัง',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานขนนก','กางขนนกออก'],
+  ['จำนวนออบเจ็กต์สูงสุด','จำนวนขนนกสูงสุด'],
+  ['ระยะห่าง / ความสูง / ระยะจากหลัง','พารามิเตอร์การจัดวางขนนก'],
+  ['มุมเอียง / ความเร็วขึ้นลง / แอมพลิจูด','พารามิเตอร์การเคลื่อนไหวขนนก']]}]},
+ {name:'ปีก V2',short:'แอนิเมชั่นสร้างปีกด้วย FireworkSparkler',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานปีก V2','เริ่มปีก V2'],
+  ['ความสูงปีก / ความกว้างปีก','ปรับตำแหน่งและความกว้างของปีก'],
+  ['รูปแบบ / ความเร็ว / ช่วงการกระพือปีก','พารามิเตอร์การกระพือปีก'],
+  ['ออบเจ็กต์ต่อปีก / ความล่าช้าของสาย','โครงสร้างปีกและความล่าช้า']]}]},
+ {name:'Saturn Sparkler',short:'แอนิเมชั่นสร้างรูปร่างคล้ายดาวเสาร์',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งาน','เริ่ม Saturn Sparkler'],
+  ['โหมดการจัดวาง','เลือกดาวเสาร์ (ทรงกลม+วงแหวน), ทรงกลม (3D), วงแหวน (แบน), Plot (พื้นดิน)'],
+  ['ความสูงพื้นฐาน / ความเร็วติดตาม','การตั้งค่าความสูงและการติดตาม'],
+  ['รัศมีวงแหวน / ความเร็ววงแหวน','พารามิเตอร์วงแหวน'],
+  ['รัศมีทรงกลม / ความเร็วทรงกลม / ชั้นทรงกลม','พารามิเตอร์ทรงกลม'],
+  ['รัศมี Plot / ความสูงลอยตัว','พารามิเตอร์โหมด Plot'],
+  ['สแกนใหม่','ตรวจจับออบเจ็กต์ใหม่']]}]},
+ {name:'วงกลมเวทมนต์',short:'แอนิเมชั่นกางวงกลมเวทมนต์',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานวงกลมเวทมนต์','เริ่มวงกลมเวทมนต์'],
+  ['ประเภทสัญลักษณ์','เลือก Ring, Circle, Hexagram'],
+  ['เอฟเฟกต์เรืองแสง','เปิด/ปิดเอฟเฟกต์เรืองแสง'],
+  ['ความสูง / เส้นผ่านศูนย์กลาง / จำนวนออบเจ็กต์ / ความเร็วหมุน','พารามิเตอร์ขนาดและการเคลื่อนไหว']]}]},
+ {name:'Tornado Toy MOD',short:'แอนิเมชั่นจัดวางออบเจ็กต์รูปแบบพายุทอร์นาโด',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งาน Tornado Toy MOD','เริ่มทอร์นาโด'],
+  ['ติดตามผู้เล่น / เอฟเฟกต์วังวน','เปิด/ปิดการติดตามและเอฟเฟกต์วังวน'],
+  ['รัศมีพื้นฐาน / ความสูง / ความสูงรวม / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / สไปรัล / คลื่น / แอมพลิจูดคลื่น','พารามิเตอร์การเคลื่อนไหว'],
+  ['สแกนออบเจ็กต์ใหม่','ตรวจจับออบเจ็กต์ใหม่']]}]},
+ {name:'รถสวรรค์',short:'แอนิเมชั่นจัดวางออบเจ็กต์แบบรถสวรรค์',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานรถสวรรค์','เริ่มรถสวรรค์'],
+  ['ติดตามผู้เล่น / วงกลมแนวตั้ง / ใช้ทิศทางคงที่','การตั้งค่าเลย์เอาต์และการติดตาม'],
+  ['มุม Yaw / Pitch / Roll คงที่','พารามิเตอร์มุมทิศทางคงที่'],
+  ['รัศมี / ความสูงศูนย์กลาง / จำนวนออบเจ็กต์ / ความเร็วหมุน','พารามิเตอร์ขนาดและการเคลื่อนไหว']]}]},
+ {name:'หัวใจ',short:'แอนิเมชั่นวาดหัวใจในแนวนอน (ระนาบ XZ)',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานหัวใจ','เริ่มหัวใจ'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดหัวใจ / ความสูงพื้นฐาน / จำนวนออบเจ็กต์','ขนาดและโครงสร้าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น / แอมพลิจูดเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'หัวใจแนวตั้ง',short:'แอนิเมชั่นวาดหัวใจในแนวตั้ง (ระนาบ XY)',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานหัวใจแนวตั้ง','เริ่มหัวใจแนวตั้ง'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดหัวใจ / ความสูงพื้นฐาน / จำนวนออบเจ็กต์','ขนาดและโครงสร้าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น / แอมพลิจูดเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'หัวใจใหญ่',short:'แอนิเมชั่นวาดหัวใจขนาดใหญ่แนวนอน',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานหัวใจใหญ่','เริ่มหัวใจใหญ่'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดพื้นฐาน / สเกล / ยืดแนวตั้ง','พารามิเตอร์รูปร่าง'],
+  ['ความสูงพื้นฐาน / จำนวนออบเจ็กต์','ความสูงและโครงสร้าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น / แอมพลิจูดเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'หัวใจใหญ่แนวตั้ง',short:'แอนิเมชั่นวาดหัวใจขนาดใหญ่แนวตั้ง',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานหัวใจใหญ่แนวตั้ง','เริ่มหัวใจใหญ่แนวตั้ง'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดพื้นฐาน / สเกล / ความสูงพื้นฐาน / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น / แอมพลิจูดเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'卍',short:'แอนิเมชั่นวาดสัญลักษณ์ 卍',tags:['anim'],sections:[{title:null,feats:[
+  ['卍 (ทั้งสองทิศทาง)','วาด 卍 ด้วยสปาร์คเลอร์สองอัน'],
+  ['ขนาด / ความเร็วในการวาด','ขนาดและความเร็วในการวาด'],
+  ['สแกนสปาร์คเลอร์ใหม่','ตรวจจับสปาร์คเลอร์ใหม่']]}]},
+ {name:'ทรงกลม',short:'แอนิเมชั่นวาดทรงกลม',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานทรงกลม','เริ่มทรงกลม'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['รัศมี / เส้นละติจูด / เส้นลองจิจูด / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุนแนวนอน / แนวตั้ง / ความเร็วเต้น / แอมพลิจูดเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'ดาวของดาวิด',short:'แอนิเมชั่นวาดดาวของดาวิด',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานดาวของดาวิด','เริ่มดาวของดาวิด'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดดาว / ความสูงพื้นฐาน / ความสูงสามเหลี่ยม / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'ดาว',short:'แอนิเมชั่นวาดดาว',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานดาว','เริ่มดาว'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['รัศมีด้านนอก / ด้านใน / ความสูงพื้นฐาน / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / ความเร็วแวววาว','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'ดาว 2',short:'แอนิเมชั่นวาดดาวพร้อมรัศมีแสง',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งานดาว 2','เริ่มดาว 2'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['ขนาดพื้นฐาน / ความยาวรัศมี / ความสูง / จำนวนรัศมี / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / เต้น / แอมพลิจูดเต้น / ความเร็วหยัก / ปริมาณหยัก','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'N1: วงกลมวุ่นวาย',short:'แอนิเมชั่นการเคลื่อนที่แบบวงกลมวุ่นวาย',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งาน N1','เริ่ม N1'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['รัศมี / ความสูงพื้นฐาน / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / ความเร็วเต้น / ปริมาณเต้น','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'N2: สไปรัลทอร์นาโด',short:'แอนิเมชั่นขึ้นไปแบบสไปรัลทอร์นาโด',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งาน N2','เริ่ม N2'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['รัศมี / ความสูงสูงสุด / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วหมุน / ความเร็วขึ้น / ปัจจัยความวุ่นวาย','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'N3: ไฮเปอร์เอ็กซ์โพลชั่น',short:'แอนิเมชั่นการกระจายแบบระเบิด',tags:['anim'],sections:[{title:null,feats:[
+  ['เปิดใช้งาน N3','เริ่ม N3'],
+  ['ติดตามผู้เล่น','ติดตามผู้เล่นหรือไม่'],
+  ['รัศมีระเบิด / จำนวนออบเจ็กต์','พารามิเตอร์รูปร่าง'],
+  ['ความเร็วรอบ / ความสุ่ม','พารามิเตอร์การเคลื่อนไหว']]}]},
+ {name:'ข้อมูลและการสนับสนุน',short:'แท็บสำหรับดูข้อมูลเวอร์ชันและการสนับสนุน',tags:[],sections:[]}
+]};
 
-    <footer><p id="footer-text">&copy; 2024 SakuraHUB Community. All rights reserved.</p></footer>
-
-    <script>
+// ===== UI TRANSLATIONS =====
 const translations = {
-    ja: {
-        home:'Home', faq:'FAQ', features:'機能一覧', developers:'開発関係者一覧', githubNav:'GitHub', termsNav:'利用規約',
-        welcome:'🌸 SakuraHUBページ', subtitle:'次世代のオープンFTAPスクリプトハブ',
-        joinCommunity:'Discord に参加', discord:'LINE オープンチャット',
-        script:'📋 SakuraHUB スクリプト', copy:'コピー', copied:'コピーしました!',
-        faqTitle:'よくある質問 (FAQ)',
-        faq1:'❓ ソースコードはどこで入手できますか？', faq1Ans:'DiscordまたはGitHubで入手できます。',
-        faq2:'❓ 対応言語は何ですか？', faq2Ans:'日本語、ベトナム語、英語、その他',
-        faq3:'❓ 安全ですか？', faq3Ans:'はい、オープンソースコードです。',
-        faq4:'❓ さくらhubの種類は？', faq4Ans:'V0.5、V0.6、V0.7があります。V0.5のサポートは完全に終了しました。',
-        faq5:'❓ サポート状況は？', faq5Ans:'公式完全サポートは2026/12/15をもって終了予定',
-        featuresTitle:'機能一覧', tabCount:'全30タブ、100以上の機能を搭載',
-        detailBtn:'詳細を確認', detailClose:'閉じる', animBadge:'アニメーション', dangerBadge:'⚠️ 悪用厳禁',
-        developersTitle:'開発関係者一覧', othersTitle:'その他の方々', othersDesc:'外部スクリプトなど…',
-        aiTitle:'使用されたAI', aiMain:'メイン：', aiSupport:'サポート：',
-        githubTitle:'GitHub を閲覧', githubDesc:'Sakurahub 関連レポジトリ',
-        termsTitle:'利用規約', termsDesc:'SakuraHUBをご利用いただく前に、利用規約をお読みください。', termsBtn:'利用規約を読む',
-        footerText:'&copy; 2024 SakuraHUB Community. All rights reserved.',
-        akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者 : 指導者</span><br>オブジェクト系<br>メインコード生成<br>外部スクリプトの作成と回収<br>UIの作成',
-        yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者 : 開発提案者</span><br><span style="color:#ff6b6b;">脱退済み</span><br>オブジェクト系の基礎提供<br>土星スパークラーの提供<br>プロジェクト立上げ関係者',
-        siroDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者</span><br>アンチ系の作成及び提供<br>オブジェクトIDの調べ方と基礎',
-        snowDesc:'kickソースコード提供者', grokDesc:'kickソースコード提供者', holonDesc:'ピアノソースコード提供者',
-        nyuDesc:'SRBMのソースコードを提供してくれました', kuroskeDesc:'vFlyの追加を許可してくれました',
-        kameDesc:'サポーター', bgHackDesc:'サポーター', imosukeDesc:'サポーター',
-        kiichiDesc:'卍アニメーションソースコードを提供', pozasDesc:'サポーター',
-        profileBtn:'プロフィール', tiktokBtn:'TikTok'
-    },
-    vn: {
-        home:'Trang chủ', faq:'Câu hỏi thường gặp', features:'Danh sách tính năng', developers:'Danh sách nhà phát triển', githubNav:'GitHub', termsNav:'Điều khoản',
-        welcome:'🌸 Trang SakuraHUB', subtitle:'Hub kịch bản FTAP mã nguồn mở thế hệ tiếp theo',
-        joinCommunity:'Tham gia Discord', discord:'Mở cuộc trò chuyện LINE',
-        script:'📋 Kịch bản SakuraHUB', copy:'Sao chép', copied:'Đã sao chép!',
-        faqTitle:'Câu hỏi thường gặp (FAQ)',
-        faq1:'❓ Tôi có thể lấy mã nguồn ở đâu?', faq1Ans:'Bạn có thể lấy từ Discord hoặc GitHub.',
-        faq2:'❓ Các ngôn ngữ được hỗ trợ là gì?', faq2Ans:'Tiếng Nhật, Tiếng Việt, Tiếng Anh và các ngôn ngữ khác',
-        faq3:'❓ Nó có an toàn không?', faq3Ans:'Có, đó là mã nguồn mở.',
-        faq4:'❓ Các loại SakuraHub là gì?', faq4Ans:'Có V0.5, V0.6, V0.7. Hỗ trợ V0.5 đã kết thúc hoàn toàn.',
-        faq5:'❓ Tình trạng hỗ trợ là gì?', faq5Ans:'Hỗ trợ đầy đủ chính thức dự kiến kết thúc vào ngày 15/12/2026',
-        featuresTitle:'Danh sách tính năng', tabCount:'Tổng cộng: 30 tab, 100+ tính năng',
-        detailBtn:'Xem chi tiết', detailClose:'Đóng', animBadge:'Hoạt hình', dangerBadge:'⚠️ Cấm lạm dụng',
-        developersTitle:'Danh sách nhà phát triển', othersTitle:'Những người khác', othersDesc:'Kịch bản bên ngoài, v.v…',
-        aiTitle:'AI được sử dụng', aiMain:'Chính:', aiSupport:'Hỗ trợ:',
-        githubTitle:'Xem GitHub', githubDesc:'Kho lưu trữ liên quan đến Sakurahub',
-        termsTitle:'Điều khoản dịch vụ', termsDesc:'Vui lòng đọc điều khoản dịch vụ trước khi sử dụng SakuraHUB.', termsBtn:'Đọc điều khoản',
-        footerText:'&copy; 2024 Cộng đồng SakuraHUB. Bảo lưu mọi quyền.',
-        akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập: Người hướng dẫn</span><br>Đối tượng<br>Tạo mã chính<br>Tạo và thu thập kịch bản bên ngoài<br>Tạo giao diện người dùng',
-        yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập: Người đề xuất phát triển</span><br><span style="color:#ff6b6b;">Đã rút lui</span><br>Cung cấp cơ sở đối tượng<br>Cung cấp Saturn Sparkler<br>Người sáng lập dự án',
-        siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập</span><br>Tạo và cung cấp hệ thống chống<br>Phương pháp khám phá ID đối tượng và kiến thức cơ bản',
-        snowDesc:'Nhà cung cấp mã nguồn Kick', grokDesc:'Nhà cung cấp mã nguồn Kick', holonDesc:'Nhà cung cấp mã nguồn Piano',
-        nyuDesc:'Đã cung cấp mã nguồn SRBM', kuroskeDesc:'Cho phép thêm vFly',
-        kameDesc:'Người hỗ trợ', bgHackDesc:'Người hỗ trợ', imosukeDesc:'Người hỗ trợ',
-        kiichiDesc:'Đã cung cấp mã nguồn hoạt hình 卍', pozasDesc:'Người hỗ trợ',
-        profileBtn:'Hồ sơ', tiktokBtn:'TikTok'
-    },
-    en: {
-        home:'Home', faq:'FAQ', features:'Features', developers:'Developers', githubNav:'GitHub', termsNav:'Terms',
-        welcome:'🌸 SakuraHUB Page', subtitle:'Next-Generation Open FTAP Script Hub',
-        joinCommunity:'Join Discord', discord:'LINE Open Chat',
-        script:'📋 SakuraHUB Script', copy:'Copy', copied:'Copied!',
-        faqTitle:'Frequently Asked Questions (FAQ)',
-        faq1:'❓ Where can I get the source code?', faq1Ans:'Available on Discord or GitHub.',
-        faq2:'❓ What languages are supported?', faq2Ans:'Japanese, Vietnamese, English, and others',
-        faq3:'❓ Is it safe?', faq3Ans:'Yes, it is open source code.',
-        faq4:'❓ What types of SakuraHub are there?', faq4Ans:'There are V0.5, V0.6, V0.7. Support for V0.5 has completely ended.',
-        faq5:'❓ What is the support status?', faq5Ans:'Official full support is scheduled to end on December 15, 2026',
-        featuresTitle:'Features', tabCount:'Total: 30 tabs, 100+ features',
-        detailBtn:'View Details', detailClose:'Close', animBadge:'Animation', dangerBadge:'⚠️ No abuse',
-        developersTitle:'Developers', othersTitle:'Others', othersDesc:'External scripts, etc…',
-        aiTitle:'AI Used', aiMain:'Main:', aiSupport:'Support:',
-        githubTitle:'Browse GitHub', githubDesc:'Sakurahub Related Repositories',
-        termsTitle:'Terms of Service', termsDesc:'Please read the Terms of Service before using SakuraHUB.', termsBtn:'Read Terms',
-        footerText:'&copy; 2024 SakuraHUB Community. All rights reserved.',
-        akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder: Mentor</span><br>Objects<br>Main Code Generation<br>External Script Creation and Collection<br>UI Creation',
-        yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder: Development Proposer</span><br><span style="color:#ff6b6b;">Retired</span><br>Object Foundation Provider<br>Saturn Sparkler Provider<br>Project Founder',
-        siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder</span><br>Anti System Creation and Provider<br>Object ID Discovery Method and Basics',
-        snowDesc:'Kick Source Code Provider', grokDesc:'Kick Source Code Provider', holonDesc:'Piano Source Code Provider',
-        nyuDesc:'Provided SRBM Source Code', kuroskeDesc:'Allowed Addition of vFly',
-        kameDesc:'Supporter', bgHackDesc:'Supporter', imosukeDesc:'Supporter',
-        kiichiDesc:'Provided 卍 Animation Source Code', pozasDesc:'Supporter',
-        profileBtn:'Profile', tiktokBtn:'TikTok'
-    },
-    ru: {
-        home:'Главная', faq:'FAQ', features:'Функции', developers:'Разработчики', githubNav:'GitHub', termsNav:'Условия',
-        welcome:'🌸 Страница SakuraHUB', subtitle:'Открытый хаб скриптов FTAP нового поколения',
-        joinCommunity:'Discord', discord:'LINE Open Chat',
-        script:'📋 Скрипт SakuraHUB', copy:'Копировать', copied:'Скопировано!',
-        faqTitle:'Часто задаваемые вопросы (FAQ)',
-        faq1:'❓ Где получить исходный код?', faq1Ans:'Доступно в Discord или GitHub.',
-        faq2:'❓ Какие языки поддерживаются?', faq2Ans:'Японский, Вьетнамский, Английский и другие',
-        faq3:'❓ Это безопасно?', faq3Ans:'Да, это открытый исходный код.',
-        faq4:'❓ Какие версии SakuraHub существуют?', faq4Ans:'Есть V0.5, V0.6, V0.7. Поддержка V0.5 полностью завершена.',
-        faq5:'❓ Каков статус поддержки?', faq5Ans:'Официальная полная поддержка завершится 15.12.2026',
-        featuresTitle:'Функции', tabCount:'Всего: 30 вкладок, 100+ функций',
-        detailBtn:'Подробнее', detailClose:'Закрыть', animBadge:'Анимация', dangerBadge:'⚠️ Запрещено злоупотребление',
-        developersTitle:'Разработчики', othersTitle:'Другие', othersDesc:'Внешние скрипты и т.д…',
-        aiTitle:'Используемый ИИ', aiMain:'Основной:', aiSupport:'Поддержка:',
-        githubTitle:'Просмотр GitHub', githubDesc:'Репозитории SakuraHub',
-        termsTitle:'Условия использования', termsDesc:'Пожалуйста, прочитайте Условия использования перед использованием SakuraHUB.', termsBtn:'Читать условия',
-        footerText:'&copy; 2024 Сообщество SakuraHUB. Все права защищены.',
-        akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь: Наставник</span><br>Объекты<br>Генерация основного кода<br>Создание и сбор внешних скриптов<br>Создание интерфейса',
-        yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь: Предложил разработку</span><br><span style="color:#ff6b6b;">Покинул проект</span><br>Предоставил основу объектов<br>Предоставил Saturn Sparkler<br>Основатель проекта',
-        siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь</span><br>Создание и предоставление Anti-системы<br>Метод поиска ID объектов и основы',
-        snowDesc:'Предоставил исходный код Kick', grokDesc:'Предоставил исходный код Kick', holonDesc:'Предоставил исходный код пианино',
-        nyuDesc:'Предоставил исходный код SRBM', kuroskeDesc:'Разрешил добавить vFly',
-        kameDesc:'Сторонник', bgHackDesc:'Сторонник', imosukeDesc:'Сторонник',
-        kiichiDesc:'Предоставил исходный код анимации 卍', pozasDesc:'Сторонник',
-        profileBtn:'Профиль', tiktokBtn:'TikTok'
-    },
-    th: {
-        home:'หน้าแรก', faq:'คำถามที่พบบ่อย', features:'รายการฟีเจอร์', developers:'รายชื่อนักพัฒนา', githubNav:'GitHub', termsNav:'ข้อกำหนด',
-        welcome:'🌸 หน้า SakuraHUB', subtitle:'ศูนย์กลางสคริปต์ FTAP แบบเปิดสำหรับรุ่นถัดไป',
-        joinCommunity:'เข้าร่วม Discord', discord:'เปิด LINE Open Chat',
-        script:'📋 สคริปต์ SakuraHUB', copy:'คัดลอก', copied:'คัดลอกแล้ว!',
-        faqTitle:'คำถามที่พบบ่อย (FAQ)',
-        faq1:'❓ ฉันจะได้รหัสต้นทางที่ไหน?', faq1Ans:'มีให้ใน Discord หรือ GitHub',
-        faq2:'❓ ภาษาที่รองรับคืออะไร?', faq2Ans:'ญี่ปุ่น, เวียดนาม, อังกฤษ และอื่นๆ',
-        faq3:'❓ มันปลอดภัยหรือไม่?', faq3Ans:'ใช่, เป็นโค้ดโอเพนซอร์ส',
-        faq4:'❓ SakuraHub มีประเภทใดบ้าง?', faq4Ans:'มี V0.5, V0.6, V0.7 การสนับสนุน V0.5 สิ้นสุดลงอย่างสมบูรณ์แล้ว',
-        faq5:'❓ สถานะการสนับสนุนเป็นอย่างไร?', faq5Ans:'การสนับสนุนอย่างเต็มรูปแบบมีกำหนดสิ้นสุดวันที่ 15 ธันวาคม 2026',
-        featuresTitle:'รายการฟีเจอร์', tabCount:'รวม: 30 แท็บ, 100+ ฟีเจอร์',
-        detailBtn:'ดูรายละเอียด', detailClose:'ปิด', animBadge:'แอนิเมชั่น', dangerBadge:'⚠️ ห้ามใช้ในทางที่ผิด',
-        developersTitle:'นักพัฒนา', othersTitle:'คนอื่น ๆ', othersDesc:'สคริปต์ภายนอก ฯลฯ…',
-        aiTitle:'AI ที่ใช้', aiMain:'หลัก:', aiSupport:'สนับสนุน:',
-        githubTitle:'ดู GitHub', githubDesc:'คลังข้อมูล SakuraHub ที่เกี่ยวข้อง',
-        termsTitle:'ข้อกำหนดการใช้งาน', termsDesc:'กรุณาอ่านข้อกำหนดการใช้งานก่อนใช้งาน SakuraHUB', termsBtn:'อ่านข้อกำหนด',
-        footerText:'&copy; 2024 ชุมชน SakuraHUB สงวนสิทธิ์ทั้งหมด',
-        akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง: ที่ปรึกษา</span><br>วัตถุ<br>การสร้างรหัสหลัก<br>การสร้างและการรวบรวมสคริปต์ภายนอก<br>การสร้างอินเตอร์เฟซ',
-        yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง: ผู้เสนอการพัฒนา</span><br><span style="color:#ff6b6b;">ออกจากทีมแล้ว</span><br>ผู้ให้บริการพื้นฐานเกี่ยวกับวัตถุ<br>ผู้ให้บริการ Saturn Sparkler<br>ผู้ก่อตั้งโครงการ',
-        siroDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง</span><br>การสร้างและผู้ให้บริการระบบป้องกัน<br>วิธีการค้นหา ID วัตถุและพื้นฐาน',
-        snowDesc:'ผู้ให้บริการรหัสต้นทาง Kick', grokDesc:'ผู้ให้บริการรหัสต้นทาง Kick', holonDesc:'ผู้ให้บริการรหัสต้นทางเปียโน',
-        nyuDesc:'จัดเตรียมรหัสต้นทาง SRBM', kuroskeDesc:'อนุญาตให้เพิ่ม vFly',
-        kameDesc:'ผู้สนับสนุน', bgHackDesc:'ผู้สนับสนุน', imosukeDesc:'ผู้สนับสนุน',
-        kiichiDesc:'จัดเตรียมรหัสต้นทางแอนิเมชั่น 卍', pozasDesc:'ผู้สนับสนุน',
-        profileBtn:'โปรไฟล์', tiktokBtn:'TikTok'
-    }
+ ja:{home:'Home',faq:'FAQ',features:'機能一覧',developers:'開発関係者一覧',githubNav:'GitHub',termsNav:'利用規約',welcome:'🌸 SakuraHUBページ',subtitle:'次世代のオープンFTAPスクリプトハブ',joinCommunity:'Discord に参加',discord:'LINE オープンチャット',script:'📋 SakuraHUB スクリプト',copy:'コピー',copied:'コピーしました!',faqTitle:'よくある質問 (FAQ)',faq1:'❓ ソースコードはどこで入手できますか？',faq1Ans:'DiscordまたはGitHubで入手できます。',faq2:'❓ 対応言語は何ですか？',faq2Ans:'日本語、ベトナム語、英語、その他',faq3:'❓ 安全ですか？',faq3Ans:'はい、オープンソースコードです。',faq4:'❓ さくらhubの種類は？',faq4Ans:'V0.5、V0.6、V0.7があります。V0.5のサポートは完全に終了しました。',faq5:'❓ サポート状況は？',faq5Ans:'公式完全サポートは2026/12/15をもって終了予定',featuresTitle:'機能一覧',tabCount:'全30タブ、100以上の機能を搭載',detailBtn:'詳細を確認',detailClose:'閉じる',animBadge:'アニメーション',dangerBadge:'⚠️ 悪用厳禁',developersTitle:'開発関係者一覧',othersTitle:'その他の方々',othersDesc:'外部スクリプトなど…',aiTitle:'使用されたAI',aiMain:'メイン：',aiSupport:'サポート：',githubTitle:'GitHub を閲覧',githubDesc:'Sakurahub 関連レポジトリ',termsTitle:'利用規約',termsDesc:'SakuraHUBをご利用いただく前に、利用規約をお読みください。',termsBtn:'利用規約を読む',footerText:'&copy; 2024 SakuraHUB Community. All rights reserved.',akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者 : 指導者</span><br>オブジェクト系<br>メインコード生成<br>外部スクリプトの作成と回収<br>UIの作成',yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者 : 開発提案者</span><br><span style="color:#ff6b6b;">脱退済み</span><br>オブジェクト系の基礎提供<br>土星スパークラーの提供<br>プロジェクト立上げ関係者',siroDesc:'<span style="color:#ffaa00;font-weight:bold;">共同創設者</span><br>アンチ系の作成及び提供<br>オブジェクトIDの調べ方と基礎',snowDesc:'kickソースコード提供者',grokDesc:'kickソースコード提供者',holonDesc:'ピアノソースコード提供者',nyuDesc:'SRBMのソースコードを提供してくれました',kuroskeDesc:'vFlyの追加を許可してくれました',kameDesc:'サポーター',bgHackDesc:'サポーター',imosukeDesc:'サポーター',kiichiDesc:'卍アニメーションソースコードを提供',pozasDesc:'サポーター',profileBtn:'プロフィール',tiktokBtn:'TikTok'},
+ vn:{home:'Trang chủ',faq:'Câu hỏi thường gặp',features:'Danh sách tính năng',developers:'Danh sách nhà phát triển',githubNav:'GitHub',termsNav:'Điều khoản',welcome:'🌸 Trang SakuraHUB',subtitle:'Hub kịch bản FTAP mã nguồn mở thế hệ tiếp theo',joinCommunity:'Tham gia Discord',discord:'Mở cuộc trò chuyện LINE',script:'📋 Kịch bản SakuraHUB',copy:'Sao chép',copied:'Đã sao chép!',faqTitle:'Câu hỏi thường gặp (FAQ)',faq1:'❓ Tôi có thể lấy mã nguồn ở đâu?',faq1Ans:'Bạn có thể lấy từ Discord hoặc GitHub.',faq2:'❓ Các ngôn ngữ được hỗ trợ là gì?',faq2Ans:'Tiếng Nhật, Tiếng Việt, Tiếng Anh và các ngôn ngữ khác',faq3:'❓ Nó có an toàn không?',faq3Ans:'Có, đó là mã nguồn mở.',faq4:'❓ Các loại SakuraHub là gì?',faq4Ans:'Có V0.5, V0.6, V0.7. Hỗ trợ V0.5 đã kết thúc hoàn toàn.',faq5:'❓ Tình trạng hỗ trợ là gì?',faq5Ans:'Hỗ trợ đầy đủ chính thức dự kiến kết thúc vào ngày 15/12/2026',featuresTitle:'Danh sách tính năng',tabCount:'Tổng cộng: 30 tab, 100+ tính năng',detailBtn:'Xem chi tiết',detailClose:'Đóng',animBadge:'Hoạt hình',dangerBadge:'⚠️ Cấm lạm dụng',developersTitle:'Danh sách nhà phát triển',othersTitle:'Những người khác',othersDesc:'Kịch bản bên ngoài, v.v…',aiTitle:'AI được sử dụng',aiMain:'Chính:',aiSupport:'Hỗ trợ:',githubTitle:'Xem GitHub',githubDesc:'Kho lưu trữ liên quan đến Sakurahub',termsTitle:'Điều khoản dịch vụ',termsDesc:'Vui lòng đọc điều khoản dịch vụ trước khi sử dụng SakuraHUB.',termsBtn:'Đọc điều khoản',footerText:'&copy; 2024 Cộng đồng SakuraHUB. Bảo lưu mọi quyền.',akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập: Người hướng dẫn</span><br>Đối tượng<br>Tạo mã chính<br>Tạo và thu thập kịch bản bên ngoài<br>Tạo giao diện người dùng',yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập: Người đề xuất phát triển</span><br><span style="color:#ff6b6b;">Đã rút lui</span><br>Cung cấp cơ sở đối tượng<br>Cung cấp Saturn Sparkler<br>Người sáng lập dự án',siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Đồng sáng lập</span><br>Tạo và cung cấp hệ thống chống<br>Phương pháp khám phá ID đối tượng',snowDesc:'Nhà cung cấp mã nguồn Kick',grokDesc:'Nhà cung cấp mã nguồn Kick',holonDesc:'Nhà cung cấp mã nguồn Piano',nyuDesc:'Đã cung cấp mã nguồn SRBM',kuroskeDesc:'Cho phép thêm vFly',kameDesc:'Người hỗ trợ',bgHackDesc:'Người hỗ trợ',imosukeDesc:'Người hỗ trợ',kiichiDesc:'Đã cung cấp mã nguồn hoạt hình 卍',pozasDesc:'Người hỗ trợ',profileBtn:'Hồ sơ',tiktokBtn:'TikTok'},
+ en:{home:'Home',faq:'FAQ',features:'Features',developers:'Developers',githubNav:'GitHub',termsNav:'Terms',welcome:'🌸 SakuraHUB Page',subtitle:'Next-Generation Open FTAP Script Hub',joinCommunity:'Join Discord',discord:'LINE Open Chat',script:'📋 SakuraHUB Script',copy:'Copy',copied:'Copied!',faqTitle:'Frequently Asked Questions (FAQ)',faq1:'❓ Where can I get the source code?',faq1Ans:'Available on Discord or GitHub.',faq2:'❓ What languages are supported?',faq2Ans:'Japanese, Vietnamese, English, and others',faq3:'❓ Is it safe?',faq3Ans:'Yes, it is open source code.',faq4:'❓ What types of SakuraHub are there?',faq4Ans:'There are V0.5, V0.6, V0.7. Support for V0.5 has completely ended.',faq5:'❓ What is the support status?',faq5Ans:'Official full support is scheduled to end on December 15, 2026',featuresTitle:'Features',tabCount:'Total: 30 tabs, 100+ features',detailBtn:'View Details',detailClose:'Close',animBadge:'Animation',dangerBadge:'⚠️ No abuse',developersTitle:'Developers',othersTitle:'Others',othersDesc:'External scripts, etc…',aiTitle:'AI Used',aiMain:'Main:',aiSupport:'Support:',githubTitle:'Browse GitHub',githubDesc:'Sakurahub Related Repositories',termsTitle:'Terms of Service',termsDesc:'Please read the Terms of Service before using SakuraHUB.',termsBtn:'Read Terms',footerText:'&copy; 2024 SakuraHUB Community. All rights reserved.',akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder: Mentor</span><br>Objects<br>Main Code Generation<br>External Script Creation and Collection<br>UI Creation',yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder: Development Proposer</span><br><span style="color:#ff6b6b;">Retired</span><br>Object Foundation Provider<br>Saturn Sparkler Provider<br>Project Founder',siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Co-founder</span><br>Anti System Creation and Provider<br>Object ID Discovery Method and Basics',snowDesc:'Kick Source Code Provider',grokDesc:'Kick Source Code Provider',holonDesc:'Piano Source Code Provider',nyuDesc:'Provided SRBM Source Code',kuroskeDesc:'Allowed Addition of vFly',kameDesc:'Supporter',bgHackDesc:'Supporter',imosukeDesc:'Supporter',kiichiDesc:'Provided 卍 Animation Source Code',pozasDesc:'Supporter',profileBtn:'Profile',tiktokBtn:'TikTok'},
+ ru:{home:'Главная',faq:'FAQ',features:'Функции',developers:'Разработчики',githubNav:'GitHub',termsNav:'Условия',welcome:'🌸 Страница SakuraHUB',subtitle:'Открытый хаб скриптов FTAP нового поколения',joinCommunity:'Discord',discord:'LINE Open Chat',script:'📋 Скрипт SakuraHUB',copy:'Копировать',copied:'Скопировано!',faqTitle:'Часто задаваемые вопросы (FAQ)',faq1:'❓ Где получить исходный код?',faq1Ans:'Доступно в Discord или GitHub.',faq2:'❓ Какие языки поддерживаются?',faq2Ans:'Японский, Вьетнамский, Английский и другие',faq3:'❓ Это безопасно?',faq3Ans:'Да, это открытый исходный код.',faq4:'❓ Какие версии SakuraHub существуют?',faq4Ans:'Есть V0.5, V0.6, V0.7. Поддержка V0.5 полностью завершена.',faq5:'❓ Каков статус поддержки?',faq5Ans:'Официальная полная поддержка завершится 15.12.2026',featuresTitle:'Функции',tabCount:'Всего: 30 вкладок, 100+ функций',detailBtn:'Подробнее',detailClose:'Закрыть',animBadge:'Анимация',dangerBadge:'⚠️ Запрещено злоупотребление',developersTitle:'Разработчики',othersTitle:'Другие',othersDesc:'Внешние скрипты и т.д…',aiTitle:'Используемый ИИ',aiMain:'Основной:',aiSupport:'Поддержка:',githubTitle:'Просмотр GitHub',githubDesc:'Репозитории SakuraHub',termsTitle:'Условия использования',termsDesc:'Пожалуйста, прочитайте Условия использования перед использованием SakuraHUB.',termsBtn:'Читать условия',footerText:'&copy; 2024 Сообщество SakuraHUB. Все права защищены.',akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь: Наставник</span><br>Объекты<br>Генерация основного кода<br>Создание и сбор внешних скриптов<br>Создание интерфейса',yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь: Предложил разработку</span><br><span style="color:#ff6b6b;">Покинул проект</span><br>Предоставил основу объектов<br>Предоставил Saturn Sparkler<br>Основатель проекта',siroDesc:'<span style="color:#ffaa00;font-weight:bold;">Сооснователь</span><br>Создание и предоставление Anti-системы<br>Метод поиска ID объектов и основы',snowDesc:'Предоставил исходный код Kick',grokDesc:'Предоставил исходный код Kick',holonDesc:'Предоставил исходный код пианино',nyuDesc:'Предоставил исходный код SRBM',kuroskeDesc:'Разрешил добавить vFly',kameDesc:'Сторонник',bgHackDesc:'Сторонник',imosukeDesc:'Сторонник',kiichiDesc:'Предоставил исходный код анимации 卍',pozasDesc:'Сторонник',profileBtn:'Профиль',tiktokBtn:'TikTok'},
+ th:{home:'หน้าแรก',faq:'คำถามที่พบบ่อย',features:'รายการฟีเจอร์',developers:'รายชื่อนักพัฒนา',githubNav:'GitHub',termsNav:'ข้อกำหนด',welcome:'🌸 หน้า SakuraHUB',subtitle:'ศูนย์กลางสคริปต์ FTAP แบบเปิดสำหรับรุ่นถัดไป',joinCommunity:'เข้าร่วม Discord',discord:'เปิด LINE Open Chat',script:'📋 สคริปต์ SakuraHUB',copy:'คัดลอก',copied:'คัดลอกแล้ว!',faqTitle:'คำถามที่พบบ่อย (FAQ)',faq1:'❓ ฉันจะได้รหัสต้นทางที่ไหน?',faq1Ans:'มีให้ใน Discord หรือ GitHub',faq2:'❓ ภาษาที่รองรับคืออะไร?',faq2Ans:'ญี่ปุ่น, เวียดนาม, อังกฤษ และอื่นๆ',faq3:'❓ มันปลอดภัยหรือไม่?',faq3Ans:'ใช่, เป็นโค้ดโอเพนซอร์ส',faq4:'❓ SakuraHub มีประเภทใดบ้าง?',faq4Ans:'มี V0.5, V0.6, V0.7 การสนับสนุน V0.5 สิ้นสุดลงอย่างสมบูรณ์แล้ว',faq5:'❓ สถานะการสนับสนุนเป็นอย่างไร?',faq5Ans:'การสนับสนุนอย่างเต็มรูปแบบมีกำหนดสิ้นสุดวันที่ 15 ธันวาคม 2026',featuresTitle:'รายการฟีเจอร์',tabCount:'รวม: 30 แท็บ, 100+ ฟีเจอร์',detailBtn:'ดูรายละเอียด',detailClose:'ปิด',animBadge:'แอนิเมชั่น',dangerBadge:'⚠️ ห้ามใช้ในทางที่ผิด',developersTitle:'นักพัฒนา',othersTitle:'คนอื่น ๆ',othersDesc:'สคริปต์ภายนอก ฯลฯ…',aiTitle:'AI ที่ใช้',aiMain:'หลัก:',aiSupport:'สนับสนุน:',githubTitle:'ดู GitHub',githubDesc:'คลังข้อมูล SakuraHub ที่เกี่ยวข้อง',termsTitle:'ข้อกำหนดการใช้งาน',termsDesc:'กรุณาอ่านข้อกำหนดการใช้งานก่อนใช้งาน SakuraHUB',termsBtn:'อ่านข้อกำหนด',footerText:'&copy; 2024 ชุมชน SakuraHUB สงวนสิทธิ์ทั้งหมด',akkiiDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง: ที่ปรึกษา</span><br>วัตถุ<br>การสร้างรหัสหลัก<br>การสร้างและการรวบรวมสคริปต์ภายนอก<br>การสร้างอินเตอร์เฟซ',yuzuDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง: ผู้เสนอการพัฒนา</span><br><span style="color:#ff6b6b;">ออกจากทีมแล้ว</span><br>ผู้ให้บริการพื้นฐานเกี่ยวกับวัตถุ<br>ผู้ให้บริการ Saturn Sparkler<br>ผู้ก่อตั้งโครงการ',siroDesc:'<span style="color:#ffaa00;font-weight:bold;">ผู้ร่วมก่อตั้ง</span><br>การสร้างและผู้ให้บริการระบบป้องกัน<br>วิธีการค้นหา ID วัตถุและพื้นฐาน',snowDesc:'ผู้ให้บริการรหัสต้นทาง Kick',grokDesc:'ผู้ให้บริการรหัสต้นทาง Kick',holonDesc:'ผู้ให้บริการรหัสต้นทางเปียโน',nyuDesc:'จัดเตรียมรหัสต้นทาง SRBM',kuroskeDesc:'อนุญาตให้เพิ่ม vFly',kameDesc:'ผู้สนับสนุน',bgHackDesc:'ผู้สนับสนุน',imosukeDesc:'ผู้สนับสนุน',kiichiDesc:'จัดเตรียมรหัสต้นทางแอนิเมชั่น 卍',pozasDesc:'ผู้สนับสนุน',profileBtn:'โปรไฟล์',tiktokBtn:'TikTok'}
 };
 
+// ===== RENDER TABS =====
+function renderTabs() {
+ const lang = translations[currentLanguage];
+ const tabs = T[currentLanguage] || T.ja;
+ const grid = document.getElementById('tabs-grid');
+ if (!grid) return;
+ grid.innerHTML = tabs.map((tab, idx) => {
+  const num = idx + 1;
+  const tags = (tab.tags||[]).map(t => {
+   if (t==='anim') return `<span class="tag-anim">${lang.animBadge}</span>`;
+   if (t==='danger') return `<span class="tag-danger">${lang.dangerBadge}</span>`;
+   return '';
+  }).join('');
+  const tagsHtml = tags ? `<div class="tab-tags">${tags}</div>` : '';
+  let detailHtml = '';
+  if (tab.sections && tab.sections.length > 0) {
+   const sHtml = tab.sections.map(sec => {
+    const tH = sec.title ? `<span class="sub-sec">${sec.title}</span>` : '';
+    const fH = (sec.feats||[]).map(f =>
+     `<div class="sf"><span class="sf-name">${f[0]}</span><span class="sf-desc">${f[1]}</span></div>`
+    ).join('');
+    return tH + fH;
+   }).join('');
+   detailHtml = `<button class="detail-toggle" onclick="toggleDetail(this)">${lang.detailBtn} <span>▼</span></button><div class="tab-detail">${sHtml}</div>`;
+  }
+  return `<div class="tab-card"><div class="tab-header"><div class="tab-num">${num}</div><div class="tab-meta"><div class="tab-name">${tab.name}</div><div class="tab-short">${tab.short}</div>${tagsHtml}</div></div>${detailHtml}</div>`;
+ }).join('');
+}
+
 function toggleDetail(btn) {
-    const detail = btn.nextElementSibling;
-    if (!detail) return;
-    const isOpen = detail.classList.contains('open');
-    detail.classList.toggle('open', !isOpen);
-    const lang = translations[currentLanguage];
-    btn.innerHTML = isOpen ? (lang.detailBtn + ' <span>▼</span>') : (lang.detailClose + ' <span>▲</span>');
+ const detail = btn.nextElementSibling;
+ if (!detail) return;
+ const isOpen = detail.classList.contains('open');
+ detail.classList.toggle('open', !isOpen);
+ const lang = translations[currentLanguage];
+ btn.innerHTML = isOpen ? `${lang.detailBtn} <span>▼</span>` : `${lang.detailClose} <span>▲</span>`;
 }
 
 function updateLanguage() {
-    const lang = translations[currentLanguage];
-    const navKeys = ['home','faq','features','developers','githubNav','termsNav'];
-    document.querySelectorAll('nav a').forEach((a,i) => { if (navKeys[i]) a.textContent = lang[navKeys[i]]; });
-    document.querySelectorAll('.top-nav a').forEach((a,i) => { if (navKeys[i]) a.textContent = lang[navKeys[i]]; });
-
-    const h1 = document.querySelector('.hero h1'); if (h1) h1.textContent = lang.welcome;
-    const hp = document.querySelector('.hero p'); if (hp) hp.textContent = lang.subtitle;
-
-    const cBtns = document.querySelectorAll('.community-section .community-btn');
-    if (cBtns[0]) cBtns[0].textContent = lang.joinCommunity;
-    if (cBtns[1]) cBtns[1].textContent = lang.discord;
-
-    const sh = document.querySelector('.script-header h3'); if (sh) sh.textContent = lang.script;
-    const cb = document.querySelector('.copy-btn'); if (cb) cb.textContent = lang.copy;
-
-    // FAQ
-    const faq = document.querySelector('#faq');
-    if (faq) {
-        const ft = faq.querySelector('h2'); if (ft) ft.textContent = lang.faqTitle;
-        const items = faq.querySelectorAll('.faq-item');
-        [['faq1','faq1Ans'],['faq2','faq2Ans'],['faq3','faq3Ans'],['faq4','faq4Ans'],['faq5','faq5Ans']].forEach((d,i) => {
-            if (items[i]) {
-                const h3 = items[i].querySelector('h3'); if (h3) h3.textContent = lang[d[0]];
-                const p = items[i].querySelector('p'); if (p) p.textContent = lang[d[1]];
-            }
-        });
-    }
-
-    // Features
-    const feat = document.querySelector('#features');
-    if (feat) {
-        const ft = feat.querySelector('h2'); if (ft) ft.textContent = lang.featuresTitle;
-        const fc = document.querySelector('#feature-count'); if (fc) fc.textContent = lang.tabCount;
-        feat.querySelectorAll('.detail-toggle').forEach(btn => {
-            const detail = btn.nextElementSibling;
-            const isOpen = detail && detail.classList.contains('open');
-            btn.innerHTML = isOpen ? (lang.detailClose + ' <span>▲</span>') : (lang.detailBtn + ' <span>▼</span>');
-        });
-        feat.querySelectorAll('.tag-anim').forEach(t => t.textContent = lang.animBadge);
-        feat.querySelectorAll('.tag-danger').forEach(t => t.textContent = lang.dangerBadge);
-    }
-
-    // Developers
-    const dev = document.querySelector('#developers');
-    if (dev) {
-        const dt = dev.querySelector('h2'); if (dt) dt.textContent = lang.developersTitle;
-        const keys = ['akkiiDesc','yuzuDesc','siroDesc','snowDesc','grokDesc','holonDesc','nyuDesc','kuroskeDesc','kameDesc','bgHackDesc','imosukeDesc','kiichiDesc','pozasDesc'];
-        dev.querySelectorAll('.developer-card').forEach((c,i) => {
-            const p = c.querySelector('p.role'); if (p && keys[i]) p.innerHTML = lang[keys[i]];
-            const a = c.querySelector('a');
-            if (a) { if (a.classList.contains('profile-btn')) a.textContent = lang.profileBtn; else if (a.classList.contains('tiktok-btn')) a.textContent = lang.tiktokBtn; }
-        });
-        const os = dev.querySelector('.others-section');
-        if (os) { const h3 = os.querySelector('h3'); const p = os.querySelector('p'); if (h3) h3.textContent = lang.othersTitle; if (p) p.textContent = lang.othersDesc; }
-        const ai = dev.querySelector('.ai-section');
-        if (ai) {
-            const h3 = ai.querySelector('h3'); if (h3) h3.textContent = lang.aiTitle;
-            const cats = ai.querySelectorAll('.ai-category');
-            if (cats[0]) cats[0].innerHTML = '<strong>' + lang.aiMain + '</strong> DeepSeek';
-            if (cats[1]) cats[1].innerHTML = '<strong>' + lang.aiSupport + '</strong> xAI-Grok';
-        }
-    }
-
-    // GitHub
-    const gh = document.querySelector('#github');
-    if (gh) { const h2 = gh.querySelector('h2'); if (h2) h2.textContent = lang.githubTitle; const d = document.querySelector('#github-desc'); if (d) d.textContent = lang.githubDesc; }
-
-    // Terms
-    const terms = document.querySelector('#terms');
-    if (terms) { const h2 = terms.querySelector('h2'); if (h2) h2.textContent = lang.termsTitle; const d = document.querySelector('#terms-desc'); if (d) d.textContent = lang.termsDesc; const b = document.querySelector('#terms-btn'); if (b) b.textContent = lang.termsBtn; }
-
-    const ft = document.querySelector('#footer-text'); if (ft) ft.innerHTML = lang.footerText;
+ const lang = translations[currentLanguage];
+ const navK = ['home','faq','features','developers','githubNav','termsNav'];
+ document.querySelectorAll('nav a').forEach((a,i) => { if(navK[i]) a.textContent=lang[navK[i]]; });
+ document.querySelectorAll('.top-nav a').forEach((a,i) => { if(navK[i]) a.textContent=lang[navK[i]]; });
+ const h1=document.querySelector('.hero h1'); if(h1) h1.textContent=lang.welcome;
+ const hp=document.querySelector('.hero p'); if(hp) hp.textContent=lang.subtitle;
+ const cb=document.querySelectorAll('.community-section .community-btn');
+ if(cb[0]) cb[0].textContent=lang.joinCommunity;
+ if(cb[1]) cb[1].textContent=lang.discord;
+ const sh=document.querySelector('.script-header h3'); if(sh) sh.textContent=lang.script;
+ const cpb=document.querySelector('.copy-btn'); if(cpb) cpb.textContent=lang.copy;
+ // FAQ
+ const faq=document.querySelector('#faq');
+ if(faq){
+  const ft=faq.querySelector('h2'); if(ft) ft.textContent=lang.faqTitle;
+  const items=faq.querySelectorAll('.faq-item');
+  [['faq1','faq1Ans'],['faq2','faq2Ans'],['faq3','faq3Ans'],['faq4','faq4Ans'],['faq5','faq5Ans']].forEach((d,i)=>{
+   if(items[i]){const h3=items[i].querySelector('h3');const p=items[i].querySelector('p');if(h3)h3.textContent=lang[d[0]];if(p)p.textContent=lang[d[1]];}
+  });
+ }
+ // Features
+ const feat=document.querySelector('#features');
+ if(feat){
+  const ft=feat.querySelector('h2'); if(ft) ft.textContent=lang.featuresTitle;
+  const fc=document.querySelector('#feature-count'); if(fc) fc.textContent=lang.tabCount;
+ }
+ renderTabs();
+ // Developers
+ const dev=document.querySelector('#developers');
+ if(dev){
+  const dt=dev.querySelector('h2'); if(dt) dt.textContent=lang.developersTitle;
+  const keys=['akkiiDesc','yuzuDesc','siroDesc','snowDesc','grokDesc','holonDesc','nyuDesc','kuroskeDesc','kameDesc','bgHackDesc','imosukeDesc','kiichiDesc','pozasDesc'];
+  dev.querySelectorAll('.developer-card').forEach((c,i)=>{
+   const p=c.querySelector('p.role'); if(p&&keys[i]) p.innerHTML=lang[keys[i]];
+   const a=c.querySelector('a');
+   if(a){if(a.classList.contains('profile-btn'))a.textContent=lang.profileBtn;else if(a.classList.contains('tiktok-btn'))a.textContent=lang.tiktokBtn;}
+  });
+  const os=dev.querySelector('.others-section');
+  if(os){const h3=os.querySelector('h3');const p=os.querySelector('p');if(h3)h3.textContent=lang.othersTitle;if(p)p.textContent=lang.othersDesc;}
+  const ai=dev.querySelector('.ai-section');
+  if(ai){
+   const h3=ai.querySelector('h3'); if(h3) h3.textContent=lang.aiTitle;
+   const cats=ai.querySelectorAll('.ai-category');
+   if(cats[0]) cats[0].innerHTML='<strong>'+lang.aiMain+'</strong> DeepSeek';
+   if(cats[1]) cats[1].innerHTML='<strong>'+lang.aiSupport+'</strong> xAI-Grok';
+  }
+ }
+ const gh=document.querySelector('#github');
+ if(gh){const h2=gh.querySelector('h2');if(h2)h2.textContent=lang.githubTitle;const d=document.querySelector('#github-desc');if(d)d.textContent=lang.githubDesc;}
+ const terms=document.querySelector('#terms');
+ if(terms){const h2=terms.querySelector('h2');if(h2)h2.textContent=lang.termsTitle;const d=document.querySelector('#terms-desc');if(d)d.textContent=lang.termsDesc;const b=document.querySelector('#terms-btn');if(b)b.textContent=lang.termsBtn;}
+ const ft=document.querySelector('#footer-text'); if(ft) ft.innerHTML=lang.footerText;
 }
 
 let currentLanguage = localStorage.getItem('language') || 'ja';
-function changeLanguage(lang) { currentLanguage = lang; localStorage.setItem('language', lang); updateLanguage(); updateActiveButton(); }
-function updateActiveButton() {
-    document.querySelectorAll('.language-switcher button').forEach(b => b.classList.remove('active'));
-    const m = {ja:0,vn:1,en:2,ru:3,th:4};
-    const btns = document.querySelectorAll('.language-switcher button');
-    if (m[currentLanguage] !== undefined) btns[m[currentLanguage]].classList.add('active');
+function changeLanguage(lang){currentLanguage=lang;localStorage.setItem('language',lang);updateLanguage();updateActiveButton();}
+function updateActiveButton(){
+ document.querySelectorAll('.language-switcher button').forEach(b=>b.classList.remove('active'));
+ const m={ja:0,vn:1,en:2,ru:3,th:4};
+ const btns=document.querySelectorAll('.language-switcher button');
+ if(m[currentLanguage]!==undefined) btns[m[currentLanguage]].classList.add('active');
 }
-window.addEventListener('DOMContentLoaded', () => {
-    updateActiveButton(); updateLanguage();
-    const langs = ['ja','vn','en','ru','th'];
-    document.querySelectorAll('.language-switcher button').forEach((b,i) => b.addEventListener('click', () => changeLanguage(langs[i])));
+window.addEventListener('DOMContentLoaded',()=>{
+ updateActiveButton(); updateLanguage();
+ const langs=['ja','vn','en','ru','th'];
+ document.querySelectorAll('.language-switcher button').forEach((b,i)=>b.addEventListener('click',()=>changeLanguage(langs[i])));
 });
-function scrollToSection(id) { const t = document.querySelector(id); if (t) t.scrollIntoView({behavior:'smooth'}); }
-function copyScript() {
-    const code = document.getElementById('script-code').textContent;
-    navigator.clipboard.writeText(code).then(() => {
-        const btn = event.target; const orig = btn.textContent;
-        btn.textContent = translations[currentLanguage].copied;
-        setTimeout(() => { btn.textContent = orig; }, 2000);
-    }).catch(() => alert('コピーに失敗しました'));
+function scrollToSection(id){const t=document.querySelector(id);if(t)t.scrollIntoView({behavior:'smooth'});}
+function copyScript(){
+ const code=document.getElementById('script-code').textContent;
+ navigator.clipboard.writeText(code).then(()=>{
+  const btn=event.target;const orig=btn.textContent;
+  btn.textContent=translations[currentLanguage].copied;
+  setTimeout(()=>{btn.textContent=orig;},2000);
+ }).catch(()=>alert('コピーに失敗しました'));
 }
-const canvas = document.getElementById('matrix'), ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', fs = 14;
-const cols = Math.ceil(canvas.width / fs);
-const drops = Array(cols).fill(0).map(() => Math.random() * -100);
-(function animate() {
-    ctx.fillStyle='rgba(10,10,10,0.2)'; ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.font=fs+'px monospace'; ctx.fillStyle='#ff69b4';
-    for(let i=0;i<cols;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,drops[i]*fs);drops[i]++;if(drops[i]*fs>canvas.height&&Math.random()>0.95)drops[i]=0;}
-    requestAnimationFrame(animate);
+// Matrix
+const canvas=document.getElementById('matrix'),ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+const chars='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',fs=14;
+const cols=Math.ceil(canvas.width/fs);
+const drops=Array(cols).fill(0).map(()=>Math.random()*-100);
+(function animate(){
+ ctx.fillStyle='rgba(10,10,10,0.2)';ctx.fillRect(0,0,canvas.width,canvas.height);
+ ctx.font=fs+'px monospace';ctx.fillStyle='#ff69b4';
+ for(let i=0;i<cols;i++){ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,drops[i]*fs);drops[i]++;if(drops[i]*fs>canvas.height&&Math.random()>0.95)drops[i]=0;}
+ requestAnimationFrame(animate);
 })();
 window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
-    </script>
+</script>
 </body>
 </html>
